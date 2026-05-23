@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.agent/
+download_data.py
+*.log
+.cache/
+.DS_Store
