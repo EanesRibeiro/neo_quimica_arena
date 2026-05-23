@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Calculator, Info, HelpCircle } from 'lucide-react';
 import freqData from '../data/calculator_frequencies.json';
+import { calculateNaiveBayes } from '../utils/naiveBayes';
+import ProbabilityGauge from './ProbabilityGauge';
 
 const WinProbabilityCalculator = () => {
   const [competition, setCompetition] = useState('BRASILEIRO');
@@ -24,83 +26,42 @@ const WinProbabilityCalculator = () => {
     { key: 'over45k', label: 'Mais de 45 mil (> 45k)' }
   ];
 
-  const calculateProbabilities = () => {
-    const key = `${competition}|${dayOfWeek}|${period}|${attendanceRange}`;
-    const directMatch = freqData.combinations[key];
-    const threshold = 5; // Limite mínimo de jogos para amostragem direta
-
-    if (directMatch && directMatch.total >= threshold) {
-      // 1. Amostragem Direta (Frequência Empírica)
-      const total = directMatch.total;
-      setProbabilities({
-        V: (directMatch.V / total) * 100,
-        E: (directMatch.E / total) * 100,
-        D: (directMatch.D / total) * 100
-      });
-      setMethodology('Amostragem Direta (Histórico Exato)');
-      setSampleSize(total);
-    } else {
-      // 2. Fallback para Naive Bayes com Suavização de Laplace (alpha = 0.5)
-      const alpha = 0.5;
-      
-      const totalGames = freqData.totals.total;
-      const countV = freqData.totals.V;
-      const countE = freqData.totals.E;
-      const countD = freqData.totals.D;
-      
-      // Quantidade de categorias de cada feature
-      const nComp = competitions.length;
-      const nDay = 7;
-      const nPeriod = 3;
-      const nAttendance = 4;
-
-      // Calcular probabilidade a priori P(C)
-      const pV_prior = (countV + alpha) / (totalGames + 3 * alpha);
-      const pE_prior = (countE + alpha) / (totalGames + 3 * alpha);
-      const pD_prior = (countD + alpha) / (totalGames + 3 * alpha);
-
-      // Função auxiliar para calcular P(X_i | C)
-      const getFeatureProb = (featureMap, val, classCount, numCategories) => {
-        const item = featureMap[val];
-        const matchCount = item ? item[classCount] || 0 : 0;
-        const totalClass = classCount === 'V' ? countV : (classCount === 'E' ? countE : countD);
-        return (matchCount + alpha) / (totalClass + numCategories * alpha);
-      };
-
-      // Probabilidades condicionais para Vitória (V)
-      const pComp_V = getFeatureProb(freqData.byCompetition, competition, 'V', nComp);
-      const pDay_V = getFeatureProb(freqData.byDayOfWeek, dayOfWeek, 'V', nDay);
-      const pPeriod_V = getFeatureProb(freqData.byPeriod, period, 'V', nPeriod);
-      const pAttendance_V = getFeatureProb(freqData.byAttendanceRange, attendanceRange, 'V', nAttendance);
-
-      // Probabilidades condicionais para Empate (E)
-      const pComp_E = getFeatureProb(freqData.byCompetition, competition, 'E', nComp);
-      const pDay_E = getFeatureProb(freqData.byDayOfWeek, dayOfWeek, 'E', nDay);
-      const pPeriod_E = getFeatureProb(freqData.byPeriod, period, 'E', nPeriod);
-      const pAttendance_E = getFeatureProb(freqData.byAttendanceRange, attendanceRange, 'E', nAttendance);
-
-      // Probabilidades condicionais para Derrota (D)
-      const pComp_D = getFeatureProb(freqData.byCompetition, competition, 'D', nComp);
-      const pDay_D = getFeatureProb(freqData.byDayOfWeek, dayOfWeek, 'D', nDay);
-      const pPeriod_D = getFeatureProb(freqData.byPeriod, period, 'D', nPeriod);
-      const pAttendance_D = getFeatureProb(freqData.byAttendanceRange, attendanceRange, 'D', nAttendance);
-
-      // Calcular score final Naive Bayes (a posteriori proporcional)
-      const scoreV = pV_prior * pComp_V * pDay_V * pPeriod_V * pAttendance_V;
-      const scoreE = pE_prior * pComp_E * pDay_E * pPeriod_E * pAttendance_E;
-      const scoreD = pD_prior * pComp_D * pDay_D * pPeriod_D * pAttendance_D;
-
-      const sumScores = scoreV + scoreE + scoreD;
-
-      // Normalizar probabilidades para somar 100%
-      setProbabilities({
-        V: (scoreV / sumScores) * 100,
-        E: (scoreE / sumScores) * 100,
-        D: (scoreD / sumScores) * 100
-      });
-      setMethodology('Classificador Naive Bayes (Fallback)');
-      setSampleSize(directMatch ? directMatch.total : 0);
+  const quickMatches = [
+    {
+      label: 'Libertadores Noturna',
+      config: { competition: 'LIBERTADORES', dayOfWeek: 'QUA', period: 'Noite', attendanceRange: 'range35kTo45k' }
+    },
+    {
+      label: 'Dérbi Casa Cheia',
+      config: { competition: 'BRASILEIRO', dayOfWeek: 'DOM', period: 'Tarde', attendanceRange: 'over45k' }
+    },
+    {
+      label: 'Copa do Brasil Decisão',
+      config: { competition: 'COPA DO BRASIL', dayOfWeek: 'QUA', period: 'Noite', attendanceRange: 'range35kTo45k' }
+    },
+    {
+      label: 'Paulistão de Manhã',
+      config: { competition: 'PAULISTA', dayOfWeek: 'DOM', period: 'Manhã', attendanceRange: 'range25kTo35k' }
     }
+  ];
+
+  const applyQuickMatch = (config) => {
+    setCompetition(config.competition);
+    setDayOfWeek(config.dayOfWeek);
+    setPeriod(config.period);
+    setAttendanceRange(config.attendanceRange);
+  };
+
+  const calculateProbabilities = () => {
+    const result = calculateNaiveBayes(freqData, {
+      competition,
+      dayOfWeek,
+      period,
+      attendanceRange
+    });
+    setProbabilities(result.probabilities);
+    setMethodology(result.methodology);
+    setSampleSize(result.sampleSize);
   };
 
   useEffect(() => {
@@ -117,6 +78,40 @@ const WinProbabilityCalculator = () => {
       <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
         Selecione os parâmetros abaixo para calcular a probabilidade estimada do Corinthians vencer, empatar ou perder o próximo confronto na Neo Química Arena com base no histórico estatístico real.
       </p>
+
+      {/* Atalhos Rápidos (Quick Matches) */}
+      <div className="quick-matches-container" style={{ marginBottom: '1.5rem' }}>
+        <span style={{ fontSize: '0.85rem', fontWeight: 'bold', color: 'var(--text-secondary)', marginRight: '1rem', textTransform: 'uppercase' }}>Atalhos Rápidos:</span>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.5rem' }}>
+          {quickMatches.map((qm, i) => {
+            const isActive = 
+              competition === qm.config.competition &&
+              dayOfWeek === qm.config.dayOfWeek &&
+              period === qm.config.period &&
+              attendanceRange === qm.config.attendanceRange;
+            return (
+              <button
+                key={i}
+                type="button"
+                onClick={() => applyQuickMatch(qm.config)}
+                className={`sub-tab-item ${isActive ? 'active' : ''}`}
+                style={{
+                  border: '1px solid var(--bg-tertiary)',
+                  padding: '0.4rem 0.8rem',
+                  fontSize: '0.8rem',
+                  backgroundColor: isActive ? '#C8232C' : 'var(--bg-primary)',
+                  color: 'var(--text-primary)',
+                  cursor: 'pointer',
+                  borderRadius: 'var(--border-radius)',
+                  transition: 'var(--transition)'
+                }}
+              >
+                {qm.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
       <div className="form-grid">
         <div className="form-group">
@@ -173,43 +168,47 @@ const WinProbabilityCalculator = () => {
       </div>
 
       <div className="prob-results-container">
-        <div className="prob-bars">
-          <div className="prob-bar-group">
-            <div className="prob-label-row">
-              <span>Vitória do Corinthians</span>
-              <span style={{ color: 'var(--success)' }}>{probabilities.V.toFixed(1)}%</span>
-            </div>
-            <div className="prob-bar-track">
-              <div 
-                className="prob-bar-fill win" 
-                style={{ width: `${probabilities.V}%` }}
-              ></div>
-            </div>
-          </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem', alignItems: 'center' }}>
+          <ProbabilityGauge probability={probabilities.V} />
 
-          <div className="prob-bar-group">
-            <div className="prob-label-row">
-              <span>Empate</span>
-              <span style={{ color: 'var(--warning)' }}>{probabilities.E.toFixed(1)}%</span>
+          <div className="prob-bars">
+            <div className="prob-bar-group">
+              <div className="prob-label-row">
+                <span>Vitória do Corinthians</span>
+                <span style={{ color: 'var(--success)' }}>{probabilities.V.toFixed(1)}%</span>
+              </div>
+              <div className="prob-bar-track">
+                <div 
+                  className="prob-bar-fill win" 
+                  style={{ width: `${probabilities.V}%` }}
+                ></div>
+              </div>
             </div>
-            <div className="prob-bar-track">
-              <div 
-                className="prob-bar-fill draw" 
-                style={{ width: `${probabilities.E}%` }}
-              ></div>
-            </div>
-          </div>
 
-          <div className="prob-bar-group">
-            <div className="prob-label-row">
-              <span>Derrota do Corinthians</span>
-              <span style={{ color: 'var(--danger)' }}>{probabilities.D.toFixed(1)}%</span>
+            <div className="prob-bar-group">
+              <div className="prob-label-row">
+                <span>Empate</span>
+                <span style={{ color: 'var(--warning)' }}>{probabilities.E.toFixed(1)}%</span>
+              </div>
+              <div className="prob-bar-track">
+                <div 
+                  className="prob-bar-fill draw" 
+                  style={{ width: `${probabilities.E}%` }}
+                ></div>
+              </div>
             </div>
-            <div className="prob-bar-track">
-              <div 
-                className="prob-bar-fill loss" 
-                style={{ width: `${probabilities.D}%` }}
-              ></div>
+
+            <div className="prob-bar-group">
+              <div className="prob-label-row">
+                <span>Derrota do Corinthians</span>
+                <span style={{ color: 'var(--danger)' }}>{probabilities.D.toFixed(1)}%</span>
+              </div>
+              <div className="prob-bar-track">
+                <div 
+                  className="prob-bar-fill loss" 
+                  style={{ width: `${probabilities.D}%` }}
+                ></div>
+              </div>
             </div>
           </div>
         </div>

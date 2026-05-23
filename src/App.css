@@ -11,8 +11,8 @@
   --accent-gold: hsl(38, 50%, 55%);
   --accent-gold-hover: hsl(38, 50%, 45%);
   
-  --success: hsl(142, 70%, 45%);
-  --success-bg: hsla(142, 70%, 45%, 0.15);
+  --success: #C8232C;
+  --success-bg: rgba(200, 35, 44, 0.15);
   --warning: hsl(48, 96%, 53%);
   --warning-bg: hsla(48, 96%, 53%, 0.15);
   --danger: hsl(0, 72%, 50%);
@@ -376,7 +376,7 @@ body {
 }
 
 .table tr:hover td {
-  background-color: var(--bg-tertiary);
+  background-color: rgba(200, 35, 44, 0.08) !important;
 }
 
 .table-rank {
@@ -601,3 +601,98 @@ body {
     font-size: 0.85rem;
   }
 }
+
+/* ==========================================
+   NEW STYLES V1.1 (KPI CARDS, REVEALS, ETC.)
+   ========================================== */
+
+.kpi-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--bg-tertiary);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card:hover {
+  transform: translateY(-4px);
+  border-color: #C8232C;
+  box-shadow: 0 8px 24px rgba(200, 35, 44, 0.25);
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background-color: var(--bg-tertiary);
+  transition: var(--transition);
+}
+
+.kpi-card:hover::before {
+  background-color: #C8232C;
+}
+
+.kpi-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.kpi-card-icon {
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.kpi-card:hover .kpi-card-icon {
+  color: #C8232C;
+}
+
+.kpi-card-value {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.kpi-prefix, .kpi-suffix {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Efeito de Reveal com IntersectionObserver */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ajustes Recharts Tooltip */
+.recharts-default-tooltip {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+}
+
+.recharts-tooltip-item-list {
+  color: var(--text-secondary) !important;
+}
+

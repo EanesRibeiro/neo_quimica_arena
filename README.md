@@ -1,5 +1,7 @@
 # 🦅 Arena Corinthians Stats Hub
 
+## 🌐 Demo ao vivo: **[EanesRibeiro.github.io/neo_quimica_arena](https://EanesRibeiro.github.io/neo_quimica_arena)**
+
 O **Arena Corinthians Stats Hub** é uma plataforma interativa de análise de dados esportivos dedicada a explorar o histórico de partidas do Corinthians como mandante em seu estádio oficial (Neo Química Arena/Arena Corinthians). A base de dados engloba **400 jogos** desde a inauguração da Arena em 2014 até o final da temporada de 2025, fornecendo insights detalhados sobre desempenho coletivo, desempenho individual de atletas, comportamento temporal de gols e recordes financeiros.
 
 Acesse o repositório do projeto no GitHub: [EanesRibeiro/neo_quimica_arena](https://github.com/EanesRibeiro/neo_quimica_arena)

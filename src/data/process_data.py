@@ -419,6 +419,62 @@ def main():
     avg_pub_com_publico = jogos_com_publico['PUBLICO PAGANTE'].mean()
     avg_rev_com_publico = jogos_com_publico['RENDA'].mean()
 
+    # Consolidação do yearly_stats
+    yearly_data = []
+    for ano in sorted(df_jogos['ANO'].unique()):
+        df_ano = df_jogos[df_jogos['ANO'] == ano]
+        total_games = len(df_ano)
+        wins = int(df_ano['RESULTADO'].value_counts().get('V', 0))
+        draws = int(df_ano['RESULTADO'].value_counts().get('E', 0))
+        losses = int(df_ano['RESULTADO'].value_counts().get('D', 0))
+        goals_scored = int(df_ano['GOL COR'].sum())
+        goals_conceded = int(df_ano['GOL VIS'].sum())
+        
+        df_ano_crowd = df_ano[df_ano['PUBLICO PAGANTE'] > 0]
+        soma_publico = int(df_ano_crowd['PUBLICO PAGANTE'].sum())
+        renda_total = float(df_ano_crowd['RENDA'].sum())
+        
+        media_publico = float(df_ano_crowd['PUBLICO PAGANTE'].mean()) if len(df_ano_crowd) > 0 else 0.0
+        ticket_medio = (renda_total / soma_publico) if soma_publico > 0 else 0.0
+        win_percentage = ((wins * 3 + draws) / (total_games * 3)) * 100 if total_games > 0 else 0.0
+        
+        yearly_data.append({
+            "year": int(ano),
+            "total_games": total_games,
+            "wins": wins,
+            "draws": draws,
+            "losses": losses,
+            "goals_scored": goals_scored,
+            "goals_conceded": goals_conceded,
+            "revenue": float(df_ano['RENDA'].sum()),
+            "average_attendance": media_publico,
+            "ticket_price": ticket_medio,
+            "win_percentage": win_percentage
+        })
+
+    # Consolidação do by_opponent
+    by_opponent_data = {}
+    for opponent in df_jogos['VISITANTE'].unique():
+        df_opp = df_jogos[df_jogos['VISITANTE'] == opponent]
+        total_games = len(df_opp)
+        wins = int(df_opp['RESULTADO'].value_counts().get('V', 0))
+        draws = int(df_opp['RESULTADO'].value_counts().get('E', 0))
+        losses = int(df_opp['RESULTADO'].value_counts().get('D', 0))
+        goals_scored = int(df_opp['GOL COR'].sum())
+        goals_conceded = int(df_opp['GOL VIS'].sum())
+        win_percentage = ((wins * 3 + draws) / (total_games * 3)) * 100 if total_games > 0 else 0.0
+        
+        by_opponent_data[opponent] = {
+            "opponent": str(opponent),
+            "total_games": total_games,
+            "wins": wins,
+            "draws": draws,
+            "losses": losses,
+            "goals_scored": goals_scored,
+            "goals_conceded": goals_conceded,
+            "win_percentage": win_percentage
+        }
+
     summary_stats_data = {
         "general": {
             "total_games": total_jogos_processados,
@@ -471,7 +527,9 @@ def main():
                 "tecnico": str(first_game_row['TÉCNICO'])
             },
             "first_cor_goal": first_goal_cor
-        }
+        },
+        "yearly_stats": yearly_data,
+        "by_opponent": by_opponent_data
     }
 
     with open(os.path.join(SRC_DATA_DIR, "summary_stats.json"), "w", encoding="utf-8") as f:

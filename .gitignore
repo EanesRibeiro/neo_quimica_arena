@@ -5,3 +5,4 @@ download_data.py
 *.log
 .cache/
 .DS_Store
+data/*melhorias*.md

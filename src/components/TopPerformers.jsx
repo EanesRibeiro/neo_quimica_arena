@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Award, Users, Trophy, DollarSign, Goal, Star } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import performersData from '../data/top_performers.json';
 
 const TopPerformers = () => {
   const [activeTab, setActiveTab] = useState('players'); // 'players' ou 'matches'
   const [playerSubTab, setPlayerSubTab] = useState('goals'); // 'goals', 'assists', 'appearances', 'win_rate'
   const [matchSubTab, setMatchSubTab] = useState('attendance'); // 'attendance', 'revenue', 'wins'
+
+  // Top 5 artilheiros ordenados para o gráfico horizontal (reverso para colocar o #1 no topo)
+  const top5Scorers = performersData.players.top_scorers.slice(0, 5).reverse();
 
   return (
     <div className="panel-card">
@@ -71,31 +75,33 @@ const TopPerformers = () => {
           </div>
 
           {playerSubTab === 'goals' && (
-            <div className="table-responsive">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Posição</th>
-                    <th>Jogador</th>
-                    <th>Posição Campo</th>
-                    <th>Jogos Disputados</th>
-                    <th style={{ textAlign: 'right' }}>Gols na Arena</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {performersData.players.top_scorers.map((player, index) => (
-                    <tr key={player.jogador}>
-                      <td className="table-rank">#{index + 1}</td>
-                      <td className="table-highlight">{player.jogador}</td>
-                      <td>{player.posicao}</td>
-                      <td>{player.jogos}</td>
-                      <td style={{ textAlign: 'right', color: 'var(--accent-gold)', fontWeight: 'bold', fontSize: '1.05rem' }}>
-                        {player.gols}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div style={{ padding: '1rem 0' }}>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
+                Top 5 Artilheiros Históricos na Neo Química Arena (Gráfico de Barras Horizontal)
+              </p>
+              <div style={{ width: '100%', height: 300 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    data={top5Scorers}
+                    layout="vertical"
+                    margin={{ top: 10, right: 30, left: 60, bottom: 5 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" stroke="#1F1F1F" />
+                    <XAxis type="number" stroke="var(--text-secondary)" fontSize={11} />
+                    <YAxis dataKey="jogador" type="category" stroke="var(--text-secondary)" fontSize={11} />
+                    <Tooltip
+                      contentStyle={{ backgroundColor: 'var(--bg-secondary)', borderColor: 'var(--bg-tertiary)', borderRadius: '8px' }}
+                      itemStyle={{ color: 'var(--text-primary)' }}
+                    />
+                    <Bar dataKey="gols" name="Gols na Arena" radius={[0, 4, 4, 0]}>
+                      {top5Scorers.map((entry, index) => {
+                        const isTop = index === top5Scorers.length - 1;
+                        return <Cell key={`cell-scorer-${index}`} fill={isTop ? '#C8232C' : '#888888'} />;
+                      })}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
             </div>
           )}
 

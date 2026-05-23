@@ -56,5 +56,1145 @@
       "placar_final": "1 x 1",
       "minuto": "25"
     }
+  },
+  "yearly_stats": [
+    {
+      "year": 14,
+      "total_games": 18,
+      "wins": 12,
+      "draws": 5,
+      "losses": 1,
+      "goals_scored": 34,
+      "goals_conceded": 14,
+      "revenue": 36510467.9,
+      "average_attendance": 30923.222222222223,
+      "ticket_price": 65.59340139916424,
+      "win_percentage": 75.92592592592592
+    },
+    {
+      "year": 15,
+      "total_games": 35,
+      "wins": 26,
+      "draws": 6,
+      "losses": 3,
+      "goals_scored": 74,
+      "goals_conceded": 21,
+      "revenue": 72573036.7,
+      "average_attendance": 30395.85714285714,
+      "ticket_price": 68.21703775420522,
+      "win_percentage": 80.0
+    },
+    {
+      "year": 16,
+      "total_games": 34,
+      "wins": 24,
+      "draws": 8,
+      "losses": 2,
+      "goals_scored": 62,
+      "goals_conceded": 17,
+      "revenue": 57199556.69,
+      "average_attendance": 28312.941176470587,
+      "ticket_price": 59.419468015041964,
+      "win_percentage": 78.43137254901961
+    },
+    {
+      "year": 17,
+      "total_games": 34,
+      "wins": 20,
+      "draws": 11,
+      "losses": 3,
+      "goals_scored": 50,
+      "goals_conceded": 24,
+      "revenue": 63696630.10000001,
+      "average_attendance": 29780.617647058825,
+      "ticket_price": 62.90770457690109,
+      "win_percentage": 69.6078431372549
+    },
+    {
+      "year": 18,
+      "total_games": 35,
+      "wins": 19,
+      "draws": 9,
+      "losses": 7,
+      "goals_scored": 41,
+      "goals_conceded": 25,
+      "revenue": 57846338.43,
+      "average_attendance": 27691.057142857142,
+      "ticket_price": 59.68542544421252,
+      "win_percentage": 62.857142857142854
+    },
+    {
+      "year": 19,
+      "total_games": 38,
+      "wins": 19,
+      "draws": 13,
+      "losses": 6,
+      "goals_scored": 47,
+      "goals_conceded": 28,
+      "revenue": 61955487.31999999,
+      "average_attendance": 29489.105263157893,
+      "ticket_price": 55.288471674641656,
+      "win_percentage": 61.40350877192983
+    },
+    {
+      "year": 20,
+      "total_games": 23,
+      "wins": 10,
+      "draws": 8,
+      "losses": 5,
+      "goals_scored": 28,
+      "goals_conceded": 23,
+      "revenue": 7353008.16,
+      "average_attendance": 30078.2,
+      "ticket_price": 48.89260766934191,
+      "win_percentage": 55.072463768115945
+    },
+    {
+      "year": 21,
+      "total_games": 37,
+      "wins": 19,
+      "draws": 10,
+      "losses": 8,
+      "goals_scored": 63,
+      "goals_conceded": 38,
+      "revenue": 14579192.7,
+      "average_attendance": 27249.0,
+      "ticket_price": 66.87948502697347,
+      "win_percentage": 60.36036036036037
+    },
+    {
+      "year": 22,
+      "total_games": 36,
+      "wins": 22,
+      "draws": 9,
+      "losses": 5,
+      "goals_scored": 54,
+      "goals_conceded": 19,
+      "revenue": 93231044.30000001,
+      "average_attendance": 36244.27777777778,
+      "ticket_price": 71.45269237902689,
+      "win_percentage": 69.44444444444444
+    },
+    {
+      "year": 23,
+      "total_games": 37,
+      "wins": 19,
+      "draws": 13,
+      "losses": 5,
+      "goals_scored": 60,
+      "goals_conceded": 36,
+      "revenue": 85688603.75,
+      "average_attendance": 36853.583333333336,
+      "ticket_price": 64.58636522605596,
+      "win_percentage": 63.06306306306306
+    },
+    {
+      "year": 24,
+      "total_games": 35,
+      "wins": 19,
+      "draws": 11,
+      "losses": 5,
+      "goals_scored": 67,
+      "goals_conceded": 32,
+      "revenue": 87984087.6,
+      "average_attendance": 40255.0,
+      "ticket_price": 62.447672942136734,
+      "win_percentage": 64.76190476190476
+    },
+    {
+      "year": 25,
+      "total_games": 38,
+      "wins": 21,
+      "draws": 10,
+      "losses": 7,
+      "goals_scored": 56,
+      "goals_conceded": 32,
+      "revenue": 114674600.00000001,
+      "average_attendance": 40745.18421052631,
+      "ticket_price": 74.0640321071202,
+      "win_percentage": 64.03508771929825
+    }
+  ],
+  "by_opponent": {
+    "FIGUEIRENSE": {
+      "opponent": "FIGUEIRENSE",
+      "total_games": 3,
+      "wins": 1,
+      "draws": 1,
+      "losses": 1,
+      "goals_scored": 3,
+      "goals_conceded": 3,
+      "win_percentage": 44.44444444444444
+    },
+    "BOTAFOGO": {
+      "opponent": "BOTAFOGO",
+      "total_games": 10,
+      "wins": 6,
+      "draws": 3,
+      "losses": 1,
+      "goals_scored": 15,
+      "goals_conceded": 7,
+      "win_percentage": 70.0
+    },
+    "INTERNACIONAL": {
+      "opponent": "INTERNACIONAL",
+      "total_games": 12,
+      "wins": 5,
+      "draws": 6,
+      "losses": 1,
+      "goals_scored": 18,
+      "goals_conceded": 13,
+      "win_percentage": 58.333333333333336
+    },
+    "BAHIA": {
+      "opponent": "BAHIA",
+      "total_games": 10,
+      "wins": 7,
+      "draws": 1,
+      "losses": 2,
+      "goals_scored": 22,
+      "goals_conceded": 13,
+      "win_percentage": 73.33333333333333
+    },
+    "PALMEIRAS": {
+      "opponent": "PALMEIRAS",
+      "total_games": 23,
+      "wins": 9,
+      "draws": 8,
+      "losses": 6,
+      "goals_scored": 23,
+      "goals_conceded": 21,
+      "win_percentage": 50.72463768115942
+    },
+    "GOIÁS": {
+      "opponent": "GOIÁS",
+      "total_games": 6,
+      "wins": 5,
+      "draws": 1,
+      "losses": 0,
+      "goals_scored": 14,
+      "goals_conceded": 4,
+      "win_percentage": 88.88888888888889
+    },
+    "FLUMINENSE": {
+      "opponent": "FLUMINENSE",
+      "total_games": 15,
+      "wins": 9,
+      "draws": 2,
+      "losses": 4,
+      "goals_scored": 24,
+      "goals_conceded": 10,
+      "win_percentage": 64.44444444444444
+    },
+    "BRAGANTINO": {
+      "opponent": "BRAGANTINO",
+      "total_games": 10,
+      "wins": 4,
+      "draws": 1,
+      "losses": 5,
+      "goals_scored": 11,
+      "goals_conceded": 11,
+      "win_percentage": 43.333333333333336
+    },
+    "ATLÉTICO (MG)": {
+      "opponent": "ATLÉTICO (MG)",
+      "total_games": 14,
+      "wins": 6,
+      "draws": 5,
+      "losses": 3,
+      "goals_scored": 14,
+      "goals_conceded": 9,
+      "win_percentage": 54.761904761904766
+    },
+    "CHAPECOENSE": {
+      "opponent": "CHAPECOENSE",
+      "total_games": 8,
+      "wins": 4,
+      "draws": 4,
+      "losses": 0,
+      "goals_scored": 8,
+      "goals_conceded": 3,
+      "win_percentage": 66.66666666666666
+    },
+    "SÃO PAULO": {
+      "opponent": "SÃO PAULO",
+      "total_games": 21,
+      "wins": 12,
+      "draws": 8,
+      "losses": 1,
+      "goals_scored": 38,
+      "goals_conceded": 20,
+      "win_percentage": 69.84126984126983
+    },
+    "SPORT": {
+      "opponent": "SPORT",
+      "total_games": 8,
+      "wins": 8,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 22,
+      "goals_conceded": 7,
+      "win_percentage": 100.0
+    },
+    "CORITIBA": {
+      "opponent": "CORITIBA",
+      "total_games": 7,
+      "wins": 6,
+      "draws": 1,
+      "losses": 0,
+      "goals_scored": 18,
+      "goals_conceded": 8,
+      "win_percentage": 90.47619047619048
+    },
+    "SANTOS": {
+      "opponent": "SANTOS",
+      "total_games": 22,
+      "wins": 12,
+      "draws": 8,
+      "losses": 2,
+      "goals_scored": 29,
+      "goals_conceded": 12,
+      "win_percentage": 66.66666666666666
+    },
+    "GRÊMIO": {
+      "opponent": "GRÊMIO",
+      "total_games": 13,
+      "wins": 3,
+      "draws": 9,
+      "losses": 1,
+      "goals_scored": 13,
+      "goals_conceded": 10,
+      "win_percentage": 46.15384615384615
+    },
+    "CRICIÚMA": {
+      "opponent": "CRICIÚMA",
+      "total_games": 2,
+      "wins": 2,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 4,
+      "goals_conceded": 2,
+      "win_percentage": 100.0
+    },
+    "CORINTHIAN-CASUALS": {
+      "opponent": "CORINTHIAN-CASUALS",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 3,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "MARÍLIA": {
+      "opponent": "MARÍLIA",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 3,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "ONCE CALDAS": {
+      "opponent": "ONCE CALDAS",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 4,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "BOTAFOGO (SP)": {
+      "opponent": "BOTAFOGO (SP)",
+      "total_games": 4,
+      "wins": 4,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 9,
+      "goals_conceded": 2,
+      "win_percentage": 100.0
+    },
+    "MOGI MIRIM": {
+      "opponent": "MOGI MIRIM",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 3,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "SÃO BERNARDO": {
+      "opponent": "SÃO BERNARDO",
+      "total_games": 3,
+      "wins": 3,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 6,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "RED BULL BRASIL": {
+      "opponent": "RED BULL BRASIL",
+      "total_games": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goals_scored": 0,
+      "goals_conceded": 0,
+      "win_percentage": 33.33333333333333
+    },
+    "PORTUGUESA": {
+      "opponent": "PORTUGUESA",
+      "total_games": 2,
+      "wins": 2,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 4,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "PENAPOLENSE": {
+      "opponent": "PENAPOLENSE",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 5,
+      "goals_conceded": 3,
+      "win_percentage": 100.0
+    },
+    "DANUBIO": {
+      "opponent": "DANUBIO",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 4,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "PONTE PRETA": {
+      "opponent": "PONTE PRETA",
+      "total_games": 10,
+      "wins": 8,
+      "draws": 1,
+      "losses": 1,
+      "goals_scored": 19,
+      "goals_conceded": 4,
+      "win_percentage": 83.33333333333334
+    },
+    "SAN LORENZO": {
+      "opponent": "SAN LORENZO",
+      "total_games": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goals_scored": 0,
+      "goals_conceded": 0,
+      "win_percentage": 33.33333333333333
+    },
+    "GUARANÍ (PAR)": {
+      "opponent": "GUARANÍ (PAR)",
+      "total_games": 2,
+      "wins": 1,
+      "draws": 0,
+      "losses": 1,
+      "goals_scored": 2,
+      "goals_conceded": 2,
+      "win_percentage": 50.0
+    },
+    "ATHLETICO": {
+      "opponent": "ATHLETICO",
+      "total_games": 11,
+      "wins": 6,
+      "draws": 5,
+      "losses": 0,
+      "goals_scored": 20,
+      "goals_conceded": 10,
+      "win_percentage": 69.6969696969697
+    },
+    "VASCO DA GAMA": {
+      "opponent": "VASCO DA GAMA",
+      "total_games": 9,
+      "wins": 7,
+      "draws": 2,
+      "losses": 0,
+      "goals_scored": 15,
+      "goals_conceded": 2,
+      "win_percentage": 85.18518518518519
+    },
+    "CRUZEIRO": {
+      "opponent": "CRUZEIRO",
+      "total_games": 11,
+      "wins": 6,
+      "draws": 2,
+      "losses": 3,
+      "goals_scored": 17,
+      "goals_conceded": 11,
+      "win_percentage": 60.60606060606061
+    },
+    "JOINVILLE": {
+      "opponent": "JOINVILLE",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 3,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "FLAMENGO": {
+      "opponent": "FLAMENGO",
+      "total_games": 16,
+      "wins": 5,
+      "draws": 5,
+      "losses": 6,
+      "goals_scored": 16,
+      "goals_conceded": 21,
+      "win_percentage": 41.66666666666667
+    },
+    "AVAÍ": {
+      "opponent": "AVAÍ",
+      "total_games": 4,
+      "wins": 3,
+      "draws": 1,
+      "losses": 0,
+      "goals_scored": 8,
+      "goals_conceded": 1,
+      "win_percentage": 83.33333333333334
+    },
+    "XV DE PIRACICABA": {
+      "opponent": "XV DE PIRACICABA",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 1,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "CAPIVARIANO": {
+      "opponent": "CAPIVARIANO",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 1,
+      "win_percentage": 100.0
+    },
+    "OESTE": {
+      "opponent": "OESTE",
+      "total_games": 2,
+      "wins": 2,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "SANTA FÉ": {
+      "opponent": "SANTA FÉ",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 1,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "CERRO PORTEÑO": {
+      "opponent": "CERRO PORTEÑO",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "LINENSE": {
+      "opponent": "LINENSE",
+      "total_games": 2,
+      "wins": 2,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 7,
+      "goals_conceded": 1,
+      "win_percentage": 100.0
+    },
+    "ITUANO": {
+      "opponent": "ITUANO",
+      "total_games": 4,
+      "wins": 2,
+      "draws": 2,
+      "losses": 0,
+      "goals_scored": 5,
+      "goals_conceded": 2,
+      "win_percentage": 66.66666666666666
+    },
+    "GRÊMIO NOVORIZONTINO": {
+      "opponent": "GRÊMIO NOVORIZONTINO",
+      "total_games": 5,
+      "wins": 4,
+      "draws": 0,
+      "losses": 1,
+      "goals_scored": 8,
+      "goals_conceded": 4,
+      "win_percentage": 80.0
+    },
+    "RED BULL": {
+      "opponent": "RED BULL",
+      "total_games": 3,
+      "wins": 1,
+      "draws": 1,
+      "losses": 1,
+      "goals_scored": 5,
+      "goals_conceded": 3,
+      "win_percentage": 44.44444444444444
+    },
+    "COBRESAL": {
+      "opponent": "COBRESAL",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 6,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "AUDAX": {
+      "opponent": "AUDAX",
+      "total_games": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 2,
+      "win_percentage": 33.33333333333333
+    },
+    "NACIONAL (URU)": {
+      "opponent": "NACIONAL (URU)",
+      "total_games": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 2,
+      "win_percentage": 33.33333333333333
+    },
+    "SANTA CRUZ": {
+      "opponent": "SANTA CRUZ",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 1,
+      "win_percentage": 100.0
+    },
+    "VITÓRIA": {
+      "opponent": "VITÓRIA",
+      "total_games": 6,
+      "wins": 3,
+      "draws": 2,
+      "losses": 1,
+      "goals_scored": 8,
+      "goals_conceded": 5,
+      "win_percentage": 61.111111111111114
+    },
+    "AMÉRICA (MG)": {
+      "opponent": "AMÉRICA (MG)",
+      "total_games": 7,
+      "wins": 3,
+      "draws": 3,
+      "losses": 1,
+      "goals_scored": 9,
+      "goals_conceded": 6,
+      "win_percentage": 57.14285714285714
+    },
+    "FERROVIÁRIA": {
+      "opponent": "FERROVIÁRIA",
+      "total_games": 3,
+      "wins": 1,
+      "draws": 2,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 1,
+      "win_percentage": 55.55555555555556
+    },
+    "SANTO ANDRÉ": {
+      "opponent": "SANTO ANDRÉ",
+      "total_games": 4,
+      "wins": 2,
+      "draws": 1,
+      "losses": 1,
+      "goals_scored": 7,
+      "goals_conceded": 6,
+      "win_percentage": 58.333333333333336
+    },
+    "LUVERDENSE": {
+      "opponent": "LUVERDENSE",
+      "total_games": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goals_scored": 1,
+      "goals_conceded": 1,
+      "win_percentage": 33.33333333333333
+    },
+    "UNIVERSIDAD DE CHILE": {
+      "opponent": "UNIVERSIDAD DE CHILE",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "PATRIOTAS": {
+      "opponent": "PATRIOTAS",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "ATLÉTICO (GO)": {
+      "opponent": "ATLÉTICO (GO)",
+      "total_games": 7,
+      "wins": 3,
+      "draws": 1,
+      "losses": 3,
+      "goals_scored": 9,
+      "goals_conceded": 6,
+      "win_percentage": 47.61904761904761
+    },
+    "RACING": {
+      "opponent": "RACING",
+      "total_games": 3,
+      "wins": 0,
+      "draws": 3,
+      "losses": 0,
+      "goals_scored": 4,
+      "goals_conceded": 4,
+      "win_percentage": 33.33333333333333
+    },
+    "SÃO BENTO": {
+      "opponent": "SÃO BENTO",
+      "total_games": 2,
+      "wins": 0,
+      "draws": 1,
+      "losses": 1,
+      "goals_scored": 1,
+      "goals_conceded": 2,
+      "win_percentage": 16.666666666666664
+    },
+    "MIRASSOL": {
+      "opponent": "MIRASSOL",
+      "total_games": 6,
+      "wins": 6,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 12,
+      "goals_conceded": 1,
+      "win_percentage": 100.0
+    },
+    "DEPORTIVO LARA": {
+      "opponent": "DEPORTIVO LARA",
+      "total_games": 2,
+      "wins": 2,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 4,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "INDEPENDIENTE": {
+      "opponent": "INDEPENDIENTE",
+      "total_games": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goals_scored": 1,
+      "goals_conceded": 2,
+      "win_percentage": 0.0
+    },
+    "CEARÁ": {
+      "opponent": "CEARÁ",
+      "total_games": 7,
+      "wins": 3,
+      "draws": 2,
+      "losses": 2,
+      "goals_scored": 9,
+      "goals_conceded": 7,
+      "win_percentage": 52.38095238095239
+    },
+    "MILLONARIOS": {
+      "opponent": "MILLONARIOS",
+      "total_games": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goals_scored": 0,
+      "goals_conceded": 1,
+      "win_percentage": 0.0
+    },
+    "PARANÁ": {
+      "opponent": "PARANÁ",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 1,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "COLO COLO": {
+      "opponent": "COLO COLO",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 1,
+      "win_percentage": 100.0
+    },
+    "SÃO CAETANO": {
+      "opponent": "SÃO CAETANO",
+      "total_games": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goals_scored": 1,
+      "goals_conceded": 1,
+      "win_percentage": 33.33333333333333
+    },
+    "AVENIDA": {
+      "opponent": "AVENIDA",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 4,
+      "goals_conceded": 2,
+      "win_percentage": 100.0
+    },
+    "CSA": {
+      "opponent": "CSA",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 1,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "MONTEVIDEO WANDERERS": {
+      "opponent": "MONTEVIDEO WANDERERS",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "INDEPENDIENTE DEL VALLE": {
+      "opponent": "INDEPENDIENTE DEL VALLE",
+      "total_games": 2,
+      "wins": 0,
+      "draws": 0,
+      "losses": 2,
+      "goals_scored": 1,
+      "goals_conceded": 4,
+      "win_percentage": 0.0
+    },
+    "FORTALEZA": {
+      "opponent": "FORTALEZA",
+      "total_games": 9,
+      "wins": 4,
+      "draws": 5,
+      "losses": 0,
+      "goals_scored": 12,
+      "goals_conceded": 6,
+      "win_percentage": 62.96296296296296
+    },
+    "INTERNACIONAL DE LIMEIRA": {
+      "opponent": "INTERNACIONAL DE LIMEIRA",
+      "total_games": 2,
+      "wins": 1,
+      "draws": 0,
+      "losses": 1,
+      "goals_scored": 4,
+      "goals_conceded": 2,
+      "win_percentage": 50.0
+    },
+    "PEÑAROL": {
+      "opponent": "PEÑAROL",
+      "total_games": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goals_scored": 0,
+      "goals_conceded": 2,
+      "win_percentage": 0.0
+    },
+    "SPORT HUNCAYO": {
+      "opponent": "SPORT HUNCAYO",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 5,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "RIVER PLATE (PAR)": {
+      "opponent": "RIVER PLATE (PAR)",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 4,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "JUVENTUDE": {
+      "opponent": "JUVENTUDE",
+      "total_games": 5,
+      "wins": 2,
+      "draws": 3,
+      "losses": 0,
+      "goals_scored": 8,
+      "goals_conceded": 4,
+      "win_percentage": 60.0
+    },
+    "CUIABÁ": {
+      "opponent": "CUIABÁ",
+      "total_games": 4,
+      "wins": 2,
+      "draws": 2,
+      "losses": 0,
+      "goals_scored": 7,
+      "goals_conceded": 4,
+      "win_percentage": 66.66666666666666
+    },
+    "GUARANI": {
+      "opponent": "GUARANI",
+      "total_games": 4,
+      "wins": 2,
+      "draws": 2,
+      "losses": 0,
+      "goals_scored": 6,
+      "goals_conceded": 4,
+      "win_percentage": 66.66666666666666
+    },
+    "DEPORTIVO CALI": {
+      "opponent": "DEPORTIVO CALI",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 1,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "BOCA JUNIORS": {
+      "opponent": "BOCA JUNIORS",
+      "total_games": 2,
+      "wins": 1,
+      "draws": 1,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 0,
+      "win_percentage": 66.66666666666666
+    },
+    "PORTUGUESA (RJ)": {
+      "opponent": "PORTUGUESA (RJ)",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "ALWAYS READY": {
+      "opponent": "ALWAYS READY",
+      "total_games": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goals_scored": 1,
+      "goals_conceded": 1,
+      "win_percentage": 33.33333333333333
+    },
+    "ÁGUA SANTA": {
+      "opponent": "ÁGUA SANTA",
+      "total_games": 2,
+      "wins": 2,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 5,
+      "goals_conceded": 1,
+      "win_percentage": 100.0
+    },
+    "ARGENTINOS JUNIORS": {
+      "opponent": "ARGENTINOS JUNIORS",
+      "total_games": 2,
+      "wins": 1,
+      "draws": 0,
+      "losses": 1,
+      "goals_scored": 4,
+      "goals_conceded": 1,
+      "win_percentage": 50.0
+    },
+    "REMO": {
+      "opponent": "REMO",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "LIVERPOOL (URU)": {
+      "opponent": "LIVERPOOL (URU)",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 3,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "UNIVERSITARIO": {
+      "opponent": "UNIVERSITARIO",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 1,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "NEWELL'S OLD BOYS": {
+      "opponent": "NEWELL'S OLD BOYS",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 1,
+      "win_percentage": 100.0
+    },
+    "ESTUDIANTES": {
+      "opponent": "ESTUDIANTES",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 1,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "NACIONAL (PAR)": {
+      "opponent": "NACIONAL (PAR)",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 4,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "AMÉRICA (RN)": {
+      "opponent": "AMÉRICA (RN)",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 1,
+      "win_percentage": 100.0
+    },
+    "RACING (URU)": {
+      "opponent": "RACING (URU)",
+      "total_games": 2,
+      "wins": 2,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 4,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "VELO CLUBE": {
+      "opponent": "VELO CLUBE",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 1,
+      "win_percentage": 100.0
+    },
+    "NOROESTE": {
+      "opponent": "NOROESTE",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 1,
+      "win_percentage": 100.0
+    },
+    "UNIVERSIDAD CENTRAL": {
+      "opponent": "UNIVERSIDAD CENTRAL",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 3,
+      "goals_conceded": 2,
+      "win_percentage": 100.0
+    },
+    "BARCELONA (EQU)": {
+      "opponent": "BARCELONA (EQU)",
+      "total_games": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goals_scored": 2,
+      "goals_conceded": 0,
+      "win_percentage": 100.0
+    },
+    "HURACÁN (ARG)": {
+      "opponent": "HURACÁN (ARG)",
+      "total_games": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goals_scored": 1,
+      "goals_conceded": 2,
+      "win_percentage": 0.0
+    },
+    "AMÉRICA DE CALI": {
+      "opponent": "AMÉRICA DE CALI",
+      "total_games": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goals_scored": 1,
+      "goals_conceded": 1,
+      "win_percentage": 33.33333333333333
+    }
   }
 }

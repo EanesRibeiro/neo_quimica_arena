@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Clock, RefreshCw, ChevronUp, ChevronDown } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import clutchData from '../data/clutch_moments.json';
 
 const ClutchMoments = () => {
@@ -7,13 +8,18 @@ const ClutchMoments = () => {
   
   const intervals = ["1-15", "16-30", "31-45", "45+", "46-60", "61-75", "76-90", "90+"];
   
-  // Encontrar o valor máximo para escala das barras
-  const maxGoals = Math.max(
-    ...intervals.flatMap(interval => [
-      clutchData.goals_by_interval[interval].scored,
-      clutchData.goals_by_interval[interval].conceded
-    ])
-  );
+  // Encontrar o pico de gols marcados
+  const maxScored = Math.max(...intervals.map(i => clutchData.goals_by_interval[i].scored));
+
+  // Preparar os dados para o Recharts
+  const chartData = intervals.map(interval => {
+    const item = clutchData.goals_by_interval[interval];
+    return {
+      name: `${interval}'`,
+      Marcados: item.scored,
+      Sofridos: item.conceded
+    };
+  });
 
   return (
     <div className="panel-card">
@@ -44,54 +50,48 @@ const ClutchMoments = () => {
           </p>
 
           <div className="clutch-grid">
-            <div className="chart-container">
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--accent-gold)' }}>
-                Minutos e Intervalos de Gols
+            <div className="chart-container" style={{ minHeight: '350px' }}>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'var(--accent-gold)' }}>
+                Distribuição de Gols por Intervalos
               </h3>
               
-              {intervals.map((interval) => {
-                const item = clutchData.goals_by_interval[interval];
-                const scoredPercent = (item.scored / maxGoals) * 100;
-                const concededPercent = (item.conceded / maxGoals) * 100;
-                
-                return (
-                  <div key={interval} className="bar-chart-row">
-                    <div className="chart-label">{interval}'</div>
-                    <div className="chart-bars-wrap">
-                      {/* Barra de gols marcados */}
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <div 
-                          className="chart-bar-single scored" 
-                          style={{ width: `${scoredPercent}%`, minWidth: item.scored > 0 ? '4px' : '0' }}
-                        ></div>
-                        <span className="chart-val" style={{ color: 'var(--success)' }}>{item.scored}</span>
-                      </div>
-                      
-                      {/* Barra de gols sofridos */}
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <div 
-                          className="chart-bar-single conceded" 
-                          style={{ width: `${concededPercent}%`, minWidth: item.conceded > 0 ? '4px' : '0' }}
-                        ></div>
-                        <span className="chart-val" style={{ color: 'var(--danger)' }}>{item.conceded}</span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              <div style={{ width: '100%', height: 300 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    data={chartData}
+                    margin={{ top: 10, right: 10, left: -25, bottom: 0 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" stroke="#1F1F1F" />
+                    <XAxis dataKey="name" stroke="var(--text-secondary)" fontSize={11} />
+                    <YAxis stroke="var(--text-secondary)" fontSize={11} />
+                    <Tooltip 
+                      contentStyle={{ backgroundColor: 'var(--bg-secondary)', borderColor: 'var(--bg-tertiary)', borderRadius: '8px' }}
+                      itemStyle={{ color: 'var(--text-primary)' }}
+                    />
+                    <Legend verticalAlign="top" height={36} />
+                    <Bar dataKey="Marcados" name="Gols Marcados">
+                      {chartData.map((entry, index) => {
+                        const isPeak = entry.Marcados === maxScored && maxScored > 0;
+                        return <Cell key={`cell-scored-${index}`} fill={isPeak ? '#C8232C' : '#888888'} />;
+                      })}
+                    </Bar>
+                    <Bar dataKey="Sofridos" name="Gols Sofridos" fill="#333333" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
 
-              <div className="chart-legend">
-                <div className="legend-item">
-                  <div className="legend-color scored"></div>
-                  <span>Gols Marcados ({
-                    intervals.reduce((acc, i) => acc + clutchData.goals_by_interval[i].scored, 0)
-                  })</span>
+              <div className="chart-legend" style={{ marginTop: '1.5rem', display: 'flex', gap: '1.5rem', justifyContent: 'center', fontSize: '0.85rem' }}>
+                <div className="legend-item" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <div className="legend-color" style={{ width: '16px', height: '16px', borderRadius: '4px', backgroundColor: '#C8232C' }}></div>
+                  <span>Pico Marcados ({maxScored})</span>
                 </div>
-                <div className="legend-item">
-                  <div className="legend-color conceded"></div>
-                  <span>Gols Sofridos ({
-                    intervals.reduce((acc, i) => acc + clutchData.goals_by_interval[i].conceded, 0)
-                  })</span>
+                <div className="legend-item" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <div className="legend-color" style={{ width: '16px', height: '16px', borderRadius: '4px', backgroundColor: '#888888' }}></div>
+                  <span>Outros Marcados</span>
+                </div>
+                <div className="legend-item" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <div className="legend-color" style={{ width: '16px', height: '16px', borderRadius: '4px', backgroundColor: '#333333' }}></div>
+                  <span>Sofridos</span>
                 </div>
               </div>
             </div>
