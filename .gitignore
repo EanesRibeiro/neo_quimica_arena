@@ -6,3 +6,5 @@ download_data.py
 .cache/
 .DS_Store
 data/*melhorias*.md
+data/ajuste.md
+data/corinthians_redesign_preview.html

@@ -36,6 +36,16 @@ O Hub é dividido em quatro áreas principais de análise:
 
 ---
 
+## 🎨 Redesign Técnico & Identidade Visual (v1.1)
+
+O projeto passou por uma reestruturação de layout e arquitetura para atingir um padrão editorial de portais esportivos de alto nível:
+*   **Visual Alvinegro Estrito**: A paleta de cores foi refinada para usar preto, branco e tons de cinza com acento em Vermelho Corinthians (`#C8232C`), eliminando estritamente qualquer elemento verde ou amarelo. A cor de empates foi padronizada para Cinza Médio (`#888888`).
+*   **Visualização de Dados com Recharts**: Substituição de tabelas complexas por visualizações gráficas avançadas (`BarChart` com realce automático de picos de gols $\ge 75\%$, `LineChart` para evolução de bilheteria e ticket médio, e `PieChart` Donut para aproveitamento de confrontos).
+*   **Filtros Inteligentes em Memória**: Alternância instantânea no Dashboard entre a visão geral acumulada, confronto direto específico (Head-to-Head) ou anos específicos (2014 a 2025) recalculados inteiramente no frontend.
+*   **Animações Nativas & Microinterações**: Implementação de animações de contagem progressiva (`useCountUp` baseada em `requestAnimationFrame`) e efeitos de revelação física de conteúdo ao scroll (`useScrollReveal` com `IntersectionObserver` global) sem dependências pesadas (YAGNI).
+
+---
+
 ## 🛠️ Stack Tecnológica
 
 O projeto foi arquitetado para ter performance máxima e custo zero de infraestrutura na web:

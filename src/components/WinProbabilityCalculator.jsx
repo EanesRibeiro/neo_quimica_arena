@@ -69,11 +69,11 @@ const WinProbabilityCalculator = () => {
   }, [competition, dayOfWeek, period, attendanceRange]);
 
   return (
-    <div className="panel-card">
-      <h2 className="panel-title">
-        <Calculator className="panel-title-icon" size={24} />
-        Calculadora de Probabilidade de Jogo
-      </h2>
+    <div className="panel-card reveal">
+      <div className="section-header">
+        <span className="section-label">Calculadora</span>
+        <h2 className="section-title">Calculadora de Probabilidade de Jogo</h2>
+      </div>
       
       <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
         Selecione os parâmetros abaixo para calcular a probabilidade estimada do Corinthians vencer, empatar ou perder o próximo confronto na Neo Química Arena com base no histórico estatístico real.
@@ -99,7 +99,7 @@ const WinProbabilityCalculator = () => {
                   border: '1px solid var(--bg-tertiary)',
                   padding: '0.4rem 0.8rem',
                   fontSize: '0.8rem',
-                  backgroundColor: isActive ? '#C8232C' : 'var(--bg-primary)',
+                  backgroundColor: isActive ? 'var(--vermelho)' : 'var(--bg-primary)',
                   color: 'var(--text-primary)',
                   cursor: 'pointer',
                   borderRadius: 'var(--border-radius)',
@@ -169,13 +169,13 @@ const WinProbabilityCalculator = () => {
 
       <div className="prob-results-container">
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem', alignItems: 'center' }}>
-          <ProbabilityGauge probability={probabilities.V} />
+          <ProbabilityGauge probability={probabilities.V} sampleSize={sampleSize} />
 
           <div className="prob-bars">
             <div className="prob-bar-group">
               <div className="prob-label-row">
                 <span>Vitória do Corinthians</span>
-                <span style={{ color: 'var(--success)' }}>{probabilities.V.toFixed(1)}%</span>
+                <span style={{ color: 'var(--vermelho)', fontFamily: 'Barlow Condensed', fontWeight: 900, fontSize: '2rem' }}>{probabilities.V.toFixed(1)}%</span>
               </div>
               <div className="prob-bar-track">
                 <div 
@@ -188,7 +188,7 @@ const WinProbabilityCalculator = () => {
             <div className="prob-bar-group">
               <div className="prob-label-row">
                 <span>Empate</span>
-                <span style={{ color: 'var(--warning)' }}>{probabilities.E.toFixed(1)}%</span>
+                <span style={{ color: 'var(--text-secondary)', fontFamily: 'Barlow Condensed', fontWeight: 900, fontSize: '2rem' }}>{probabilities.E.toFixed(1)}%</span>
               </div>
               <div className="prob-bar-track">
                 <div 
@@ -201,7 +201,7 @@ const WinProbabilityCalculator = () => {
             <div className="prob-bar-group">
               <div className="prob-label-row">
                 <span>Derrota do Corinthians</span>
-                <span style={{ color: 'var(--danger)' }}>{probabilities.D.toFixed(1)}%</span>
+                <span style={{ color: '#595959', fontFamily: 'Barlow Condensed', fontWeight: 900, fontSize: '2rem' }}>{probabilities.D.toFixed(1)}%</span>
               </div>
               <div className="prob-bar-track">
                 <div 
@@ -213,17 +213,17 @@ const WinProbabilityCalculator = () => {
           </div>
         </div>
 
-        <div className="prob-info-box">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, fontSize: '0.9rem', color: 'var(--accent-gold)' }}>
+        <div className="prob-info-box" style={{ borderLeftColor: 'var(--vermelho)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-primary)' }}>
             <Info size={18} />
             Metodologia Aplicada
           </div>
-          <div style={{ fontSize: '0.85rem' }}>
-            <span style={{ fontWeight: 600 }}>Método: </span>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+            <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>Método: </span>
             {methodology}
           </div>
-          <div style={{ fontSize: '0.85rem' }}>
-            <span style={{ fontWeight: 600 }}>Jogos da combinação exata: </span>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+            <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>Jogos da combinação exata: </span>
             {sampleSize}
           </div>
           <div className="info-alert">

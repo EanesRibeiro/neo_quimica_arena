@@ -36,6 +36,7 @@ import './App.css';
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard'); // 'dashboard', 'calculator', 'clutch', 'records'
   const [selectedOpponent, setSelectedOpponent] = useState('');
+  const [selectedYear, setSelectedYear] = useState('Todos');
 
   const { financial_and_attendance, records, milestones } = summaryData;
 
@@ -44,29 +45,88 @@ function App() {
     return Object.keys(summaryData.by_opponent).sort();
   }, []);
 
-  // Dados dinâmicos com base no adversário selecionado (Head-to-Head)
-  const currentGeneral = useMemo(() => {
-    if (!selectedOpponent) {
-      return summaryData.general;
-    }
-    const oppData = summaryData.by_opponent[selectedOpponent];
-    return {
-      total_games: oppData.total_games,
-      wins: oppData.wins,
-      draws: oppData.draws,
-      losses: oppData.losses,
-      win_percentage: oppData.win_percentage,
-      goals_scored: oppData.goals_scored,
-      goals_conceded: oppData.goals_conceded,
-      goal_difference: oppData.goals_scored - oppData.goals_conceded,
-      unbeaten_streak_record: '-'
-    };
-  }, [selectedOpponent]);
+  // Lista de anos disponíveis ordenados
+  const years = useMemo(() => {
+    return summaryData.yearly_stats.map(s => s.year).sort((a, b) => a - b);
+  }, []);
 
-  // Instanciar hooks de reveal para efeitos de scroll
-  const [gridRef1, isVisible1] = useScrollReveal(0.02);
-  const [gridRef2, isVisible2] = useScrollReveal(0.02);
-  const [chartRef, isVisibleChart] = useScrollReveal(0.02);
+  // Controladores de filtros para evitar conflitos de agregação
+  const handleOpponentChange = (e) => {
+    const opp = e.target.value;
+    setSelectedOpponent(opp);
+    if (opp) {
+      setSelectedYear('Todos'); // Reseta ano quando escolhe oponente
+    }
+  };
+
+  const handleYearChange = (e) => {
+    const yr = e.target.value;
+    setSelectedYear(yr);
+    if (yr !== 'Todos') {
+      setSelectedOpponent(''); // Reseta oponente quando escolhe ano
+    }
+  };
+
+  // Dados consolidados dinâmicos com base nos filtros
+  const currentData = useMemo(() => {
+    if (selectedOpponent) {
+      const oppData = summaryData.by_opponent[selectedOpponent];
+      return {
+        total_games: oppData.total_games,
+        wins: oppData.wins,
+        draws: oppData.draws,
+        losses: oppData.losses,
+        win_percentage: oppData.win_percentage,
+        goals_scored: oppData.goals_scored,
+        goals_conceded: oppData.goals_conceded,
+        goal_difference: oppData.goals_scored - oppData.goals_conceded,
+        total_attendance: null,
+        total_revenue: null,
+        isYearFiltered: false,
+        isOpponentFiltered: true
+      };
+    }
+    
+    if (selectedYear !== 'Todos') {
+      const yearNum = parseInt(selectedYear, 10);
+      const yrData = summaryData.yearly_stats.find(s => s.year === yearNum);
+      if (yrData) {
+        return {
+          total_games: yrData.total_games,
+          wins: yrData.wins,
+          draws: yrData.draws,
+          losses: yrData.losses,
+          win_percentage: yrData.win_percentage,
+          goals_scored: yrData.goals_scored,
+          goals_conceded: yrData.goals_conceded,
+          goal_difference: yrData.goals_scored - yrData.goals_conceded,
+          total_attendance: Math.round(yrData.average_attendance * yrData.total_games),
+          total_revenue: yrData.revenue,
+          isYearFiltered: true,
+          isOpponentFiltered: false
+        };
+      }
+    }
+
+    // Padrão Geral (Sem filtros)
+    return {
+      total_games: summaryData.general.total_games,
+      wins: summaryData.general.wins,
+      draws: summaryData.general.draws,
+      losses: summaryData.general.losses,
+      win_percentage: summaryData.general.win_percentage,
+      goals_scored: summaryData.general.goals_scored,
+      goals_conceded: summaryData.general.goals_conceded,
+      goal_difference: summaryData.general.goal_difference,
+      total_attendance: summaryData.financial_and_attendance.total_attendance,
+      total_revenue: summaryData.financial_and_attendance.total_revenue,
+      isYearFiltered: false,
+      isOpponentFiltered: false
+    };
+  }, [selectedOpponent, selectedYear]);
+
+  // Inicializa a observação automática de Scroll Reveal para elementos com a classe '.reveal'
+  useScrollReveal();
 
   return (
     <div className="app-container">
@@ -113,163 +173,188 @@ function App() {
       {/* Main Content */}
       <main className="main-content">
         {activeTab === 'dashboard' && (
-          <div>
-            {/* Filtro Head-to-Head */}
-            <div className="panel-card" style={{ padding: '1.25rem', marginBottom: '1.5rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <Activity size={20} style={{ color: 'var(--accent-gold)' }} />
-                <span style={{ fontWeight: 'bold', fontSize: '0.95rem' }}>Filtro Head-to-Head (Confronto Direto):</span>
+          <div className="shell">
+            {/* Bloco Hero Editorial */}
+            <div className="hero reveal">
+              <div className="hero-eyebrow">Neo Química Arena · 2014–2025</div>
+              <div className="hero-headline">
+                {currentData.total_games} jogos.<br />
+                <em>{currentData.wins} vitórias.</em>
               </div>
-              <select 
-                className="select-control"
-                style={{ minWidth: '250px', padding: '0.5rem' }}
-                value={selectedOpponent}
-                onChange={(e) => setSelectedOpponent(e.target.value)}
-              >
-                <option value="">Arena Geral (Todos os Adversários)</option>
-                {opponents.map((opp) => (
-                  <option key={opp} value={opp}>{opp}</option>
-                ))}
-              </select>
-            </div>
-
-            {/* Overview Grid 1 */}
-            <div ref={gridRef1} className="overview-grid">
-              <KPICard 
-                title="Partidas Disputadas" 
-                value={currentGeneral.total_games} 
-                icon={Calendar} 
-                delay={0} 
-                isVisible={isVisible1} 
-              />
-              <KPICard 
-                title="Vitórias do Timão" 
-                value={currentGeneral.wins} 
-                icon={TrendingUp} 
-                delay={100} 
-                isVisible={isVisible1} 
-                suffix={` (${((currentGeneral.wins / (currentGeneral.total_games || 1)) * 100).toFixed(1)}%)`}
-              />
-              <KPICard 
-                title="Empates" 
-                value={currentGeneral.draws} 
-                icon={TrendingUp} 
-                delay={200} 
-                isVisible={isVisible1} 
-                suffix={` (${((currentGeneral.draws / (currentGeneral.total_games || 1)) * 100).toFixed(1)}%)`}
-              />
-              <KPICard 
-                title="Derrotas" 
-                value={currentGeneral.losses} 
-                icon={TrendingUp} 
-                delay={300} 
-                isVisible={isVisible1} 
-                suffix={` (${((currentGeneral.losses / (currentGeneral.total_games || 1)) * 100).toFixed(1)}%)`}
-              />
-            </div>
-
-            {/* Overview Grid 2 */}
-            <div ref={gridRef2} className="overview-grid">
-              <KPICard 
-                title="Aproveitamento Geral" 
-                value={currentGeneral.win_percentage} 
-                suffix="%" 
-                decimals={1}
-                icon={Trophy} 
-                delay={0} 
-                isVisible={isVisible2} 
-              />
-              <KPICard 
-                title="Gols do Timão" 
-                value={currentGeneral.goals_scored} 
-                icon={Goal} 
-                delay={100} 
-                isVisible={isVisible2} 
-                suffix={` (Saldo: ${currentGeneral.goal_difference >= 0 ? `+${currentGeneral.goal_difference}` : currentGeneral.goal_difference})`}
-              />
-              <KPICard 
-                title="Gols Sofridos" 
-                value={currentGeneral.goals_conceded} 
-                icon={ShieldAlert} 
-                delay={200} 
-                isVisible={isVisible2} 
-              />
+              <div className="hero-sub">
+                {selectedOpponent 
+                  ? `Histórico detalhado de confrontos diretos contra o ${selectedOpponent} jogando em Itaquera.`
+                  : selectedYear !== 'Todos'
+                    ? `Estatísticas consolidadas do Corinthians como mandante durante a temporada de 20${selectedYear}.`
+                    : "Análise histórica completa do aproveitamento, bilheteria e recordes do Timão em Itaquera."
+                }
+              </div>
               
-              {!selectedOpponent && (
-                <>
-                  <KPICard 
-                    title="Público Acumulado" 
-                    value={financial_and_attendance.total_attendance} 
-                    icon={Users} 
-                    delay={300} 
-                    isVisible={isVisible2} 
-                  />
-                  <KPICard 
-                    title="Bilheteria Acumulada" 
-                    value={financial_and_attendance.total_revenue / 1000000} 
-                    prefix="R$ "
-                    suffix="M"
-                    decimals={1}
-                    icon={DollarSign} 
-                    delay={400} 
-                    isVisible={isVisible2} 
-                  />
-                </>
+              <div className="hero-strip">
+                <div className="hero-stat">
+                  <div className="hs-label">Aproveitamento</div>
+                  <div className="hs-num" style={{ color: 'var(--vermelho)' }}>
+                    {currentData.win_percentage.toFixed(1)}<span className="unit">%</span>
+                  </div>
+                  <div className="hs-sub">{selectedYear !== 'Todos' ? `Em 20${selectedYear}` : 'Geral na Arena'}</div>
+                </div>
+                <div className="hero-stat">
+                  <div className="hs-label">Gols Marcados</div>
+                  <div className="hs-num">{currentData.goals_scored}</div>
+                  <div className="hs-sub">Saldo {currentData.goal_difference >= 0 ? `+${currentData.goal_difference}` : currentData.goal_difference}</div>
+                </div>
+                <div className="hero-stat">
+                  <div className="hs-label">Público Acumulado</div>
+                  <div className="hs-num">
+                    {currentData.total_attendance 
+                      ? (currentData.total_attendance / 1000000).toFixed(1) 
+                      : '-'}
+                    <span className="unit">{currentData.total_attendance ? 'M' : ''}</span>
+                  </div>
+                  <div className="hs-sub">Fiel em Itaquera</div>
+                </div>
+                <div className="hero-stat">
+                  <div className="hs-label">Bilheteria</div>
+                  <div className="hs-num" style={{ color: 'var(--ouro)' }}>
+                    {currentData.total_revenue 
+                      ? `R$ ${(currentData.total_revenue / 1000000).toFixed(0)}` 
+                      : '-'}
+                    <span className="unit">{currentData.total_revenue ? 'M' : ''}</span>
+                  </div>
+                  <div className="hs-sub">Renda líquida aproximada</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Painel de Filtros Integrado */}
+            <div className="panel-card reveal" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', borderBottom: '1px solid var(--bg-tertiary)' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <span className="form-label" style={{ fontSize: '10px' }}>Confronto Direto (Oponente)</span>
+                  <select 
+                    className="select-control"
+                    style={{ minWidth: '220px', padding: '0.5rem' }}
+                    value={selectedOpponent}
+                    onChange={handleOpponentChange}
+                  >
+                    <option value="">Arena Geral (Todos os Adversários)</option>
+                    {opponents.map((opp) => (
+                      <option key={opp} value={opp}>{opp}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <span className="form-label" style={{ fontSize: '10px' }}>Filtrar por Ano</span>
+                  <select 
+                    className="select-control"
+                    style={{ minWidth: '220px', padding: '0.5rem' }}
+                    value={selectedYear}
+                    onChange={handleYearChange}
+                  >
+                    <option value="Todos">Todos os Anos (2014–2025)</option>
+                    {years.map((y) => (
+                      <option key={y} value={y}>Ano 20{y}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {(selectedOpponent || selectedYear !== 'Todos') && (
+                <button 
+                  onClick={() => { setSelectedOpponent(''); setSelectedYear('Todos'); }}
+                  style={{
+                    backgroundColor: 'transparent',
+                    border: '1px solid var(--bg-tertiary)',
+                    color: 'var(--text-secondary)',
+                    padding: '0.5rem 1rem',
+                    borderRadius: 'var(--border-radius)',
+                    cursor: 'pointer',
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    textTransform: 'uppercase'
+                  }}
+                >
+                  Limpar Filtros
+                </button>
               )}
             </div>
 
-            {/* Gráficos Recharts */}
-            <div ref={chartRef} className={`reveal ${isVisibleChart ? 'visible' : ''}`} style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem', marginTop: '2.5rem' }}>
+            {/* Overview Animada com KPICards */}
+            {(selectedOpponent || selectedYear !== 'Todos') && (
+              <div className="overview-grid reveal" style={{ marginTop: '1.5rem' }}>
+                <KPICard label="Partidas Disputadas" value={currentData.total_games} delay={0} />
+                <KPICard label="Vitórias do Timão" value={currentData.wins} delay={150} />
+                <KPICard label="Gols Marcados" value={currentData.goals_scored} delay={300} />
+                <KPICard label="Saldo de Gols" value={currentData.goal_difference} delay={450} />
+              </div>
+            )}
+
+            {/* Seção de Aproveitamento Alvinegra */}
+            <div className="panel-card reveal">
+              <div className="section-header">
+                <span className="section-label">Resultado</span>
+                <h2 className="section-title">Aproveitamento de Confrontos</h2>
+              </div>
+              
+              <div className="wdl-row">
+                <div className="wdl-pill">
+                  <div className="wdl-num" style={{ color: 'var(--vermelho)' }}>{currentData.wins}</div>
+                  <div className="wdl-bar">
+                    <div className="wdl-bar-fill" style={{ width: `${(currentData.wins / currentData.total_games * 100) || 0}%`, backgroundColor: 'var(--vermelho)' }}></div>
+                  </div>
+                  <div className="wdl-label">Vitórias · {((currentData.wins / currentData.total_games * 100) || 0).toFixed(1)}%</div>
+                </div>
+                <div className="wdl-pill">
+                  <div className="wdl-num" style={{ color: 'var(--text-light)' }}>{currentData.draws}</div>
+                  <div className="wdl-bar">
+                    <div className="wdl-bar-fill" style={{ width: `${(currentData.draws / currentData.total_games * 100) || 0}%`, backgroundColor: 'var(--text-secondary)' }}></div>
+                  </div>
+                  <div className="wdl-label">Empates · {((currentData.draws / currentData.total_games * 100) || 0).toFixed(1)}%</div>
+                </div>
+                <div className="wdl-pill">
+                  <div className="wdl-num" style={{ color: 'var(--text-secondary)' }}>{currentData.losses}</div>
+                  <div className="wdl-bar">
+                    <div className="wdl-bar-fill" style={{ width: `${(currentData.losses / currentData.total_games * 100) || 0}%`, backgroundColor: '#333333' }}></div>
+                  </div>
+                  <div className="wdl-label">Derrotas · {((currentData.losses / currentData.total_games * 100) || 0).toFixed(1)}%</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Visualizações Gráficas de Aproveitamento */}
+            <div className="reveal" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
                 
-                {/* Donut Chart - W/D/L */}
+                {/* Painel de Clássicos */}
                 <div className="panel-card" style={{ marginBottom: 0 }}>
                   <h3 className="panel-title" style={{ fontSize: '1.2rem' }}>
                     <Activity className="panel-title-icon" size={20} />
-                    Aproveitamento de Confrontos (Donut Chart)
+                    Desempenho em Clássicos
                   </h3>
-                  <div style={{ width: '100%', height: 260, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                    <ResponsiveContainer width="100%" height={200}>
-                      <PieChart>
-                        <Pie
-                          data={[
-                            { name: 'Vitórias', value: currentGeneral.wins },
-                            { name: 'Empates', value: currentGeneral.draws },
-                            { name: 'Derrotas', value: currentGeneral.losses }
-                          ]}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={55}
-                          outerRadius={75}
-                          paddingAngle={5}
-                          dataKey="value"
-                        >
-                          <Cell fill="#C8232C" /> {/* Vermelho Corinthians */}
-                          <Cell fill="#888888" /> {/* Cinza Empate */}
-                          <Cell fill="#2E2E2E" /> {/* Preto/Cinza escuro Derrota */}
-                        </Pie>
-                        <RechartsTooltip />
-                      </PieChart>
-                    </ResponsiveContainer>
-                    <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', fontSize: '0.85rem', marginTop: '0.5rem' }}>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                        <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#C8232C', display: 'inline-block' }}></span>
-                        Vitórias: {currentGeneral.wins}
-                      </span>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                        <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#888888', display: 'inline-block' }}></span>
-                        Empates: {currentGeneral.draws}
-                      </span>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                        <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#2E2E2E', display: 'inline-block' }}></span>
-                        Derrotas: {currentGeneral.losses}
-                      </span>
-                    </div>
+                  <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '1rem' }}>
+                    {['PALMEIRAS', 'SÃO PAULO', 'SANTOS'].map(rival => {
+                      const data = summaryData.by_opponent[rival] || { win_percentage: 0, wins: 0, draws: 0, losses: 0, total_games: 0 };
+                      return (
+                        <div key={rival} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                            <span style={{ fontWeight: 700, fontSize: '0.95rem' }}>{rival}</span>
+                            <span style={{ fontFamily: 'Barlow Condensed', fontWeight: 900, fontSize: '1.2rem', color: 'var(--vermelho)' }}>{data.win_percentage.toFixed(1)}%</span>
+                          </div>
+                          <div style={{ width: '100%', height: '8px', backgroundColor: 'var(--bg-quaternary)', borderRadius: '4px', overflow: 'hidden' }}>
+                            <div style={{ width: `${data.win_percentage}%`, height: '100%', backgroundColor: 'var(--vermelho)', borderRadius: '4px' }}></div>
+                          </div>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
+                            {data.total_games} Jogos: {data.wins}V · {data.draws}E · {data.losses}D
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
-                {/* Line Chart - Evolução Financeira Anual (Apenas geral) */}
-                {!selectedOpponent && (
+                {/* Line Chart - Evolução Financeira Anual (Geral) */}
+                {!selectedOpponent && selectedYear === 'Todos' && (
                   <div className="panel-card" style={{ marginBottom: 0 }}>
                     <h3 className="panel-title" style={{ fontSize: '1.2rem' }}>
                       <TrendingUp className="panel-title-icon" size={20} />
@@ -281,18 +366,18 @@ function App() {
                           data={summaryData.yearly_stats}
                           margin={{ top: 10, right: 10, left: -10, bottom: 0 }}
                         >
-                          <CartesianGrid strokeDasharray="3 3" stroke="#1F1F1F" />
-                          <XAxis dataKey="year" stroke="var(--text-secondary)" fontSize={11} />
-                          <YAxis yAxisId="left" stroke="#C8232C" fontSize={10} label={{ value: 'Renda (M$)', angle: -90, position: 'insideLeft', fill: '#C8232C', fontSize: 10 }} />
-                          <YAxis yAxisId="right" orientation="right" stroke="var(--accent-gold)" fontSize={10} label={{ value: 'Ticket (R$)', angle: 90, position: 'insideRight', fill: 'var(--accent-gold)', fontSize: 10 }} />
+                          <XAxis dataKey="year" stroke="var(--text-secondary)" fontSize={11} formatter={(y) => `20${y}`} />
+                          <YAxis yAxisId="left" hide={true} />
+                          <YAxis yAxisId="right" orientation="right" hide={true} />
                           <RechartsTooltip 
+                            contentStyle={{ backgroundColor: '#0A0A0A', borderColor: '#2E2E2E', color: '#FFF' }}
                             formatter={(value, name) => {
                               if (name === "Receita Anual") return [`R$ ${(value / 1000000).toFixed(1)}M`, "Receita Anual"];
                               return [`R$ ${value.toFixed(1)}`, "Ticket Médio"];
                             }}
                           />
-                          <Line yAxisId="left" type="monotone" dataKey="revenue" name="Receita Anual" stroke="#C8232C" strokeWidth={2} activeDot={{ r: 8 }} />
-                          <Line yAxisId="right" type="monotone" dataKey="ticket_price" name="Ticket Médio" stroke="var(--accent-gold)" strokeWidth={2} />
+                          <Line yAxisId="left" type="monotone" dataKey="revenue" name="Receita Anual" stroke="#C8232C" strokeWidth={3} dot={false} activeDot={{ r: 8 }} />
+                          <Line yAxisId="right" type="monotone" dataKey="ticket_price" name="Ticket Médio" stroke="var(--ouro)" strokeWidth={3} dot={false} />
                         </LineChart>
                       </ResponsiveContainer>
                     </div>
@@ -301,12 +386,12 @@ function App() {
               </div>
             </div>
 
-            {/* Dashboard Cards & Details */}
+            {/* Destaques de Recordes & Marcos */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem', marginTop: '2.5rem' }}>
               {/* Central Box for Invincibility Streak */}
-              {!selectedOpponent && (
-                <div className="panel-card" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', borderLeft: '5px solid var(--accent-gold)' }}>
-                  <Sparkles size={48} style={{ color: 'var(--accent-gold)', flexShrink: 0 }} />
+              {!selectedOpponent && selectedYear === 'Todos' && (
+                <div className="panel-card reveal" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', borderLeft: '5px solid var(--vermelho)' }}>
+                  <Sparkles size={48} style={{ color: 'var(--vermelho)', flexShrink: 0 }} />
                   <div>
                     <h3 style={{ fontSize: '1.3rem', fontWeight: 800, marginBottom: '0.25rem' }}>
                       Recorde de Invencibilidade na Arena: {summaryData.general.unbeaten_streak_record} Jogos Consecutivos
@@ -320,149 +405,88 @@ function App() {
 
               {/* Records and Milestones */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
-                <div className="panel-card" style={{ marginBottom: 0 }}>
+                <div className="panel-card reveal" style={{ marginBottom: 0 }}>
                   <h2 className="panel-title">
                     <Trophy className="panel-title-icon" size={24} />
                     Recordes e Estatísticas do Estádio
                   </h2>
                   <div className="milestones-grid" style={{ marginTop: '1rem' }}>
-                    <div className="milestone-box">
-                      <div className="milestone-title">
+                    <div className="milestone-box" style={{ background: 'transparent', border: 'none', padding: 0 }}>
+                      <div className="milestone-title" style={{ justifyContent: 'center', borderBottom: 'none', paddingBottom: 0, marginBottom: '0.5rem' }}>
                         <Users size={18} />
                         Público Recorde
                       </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Público Pagante</span>
-                        <span className="milestone-value" style={{ color: 'var(--accent-gold)' }}>
-                          {records.highest_attendance.publico.toLocaleString('pt-BR')}
-                        </span>
+                      <div style={{ textAlign: 'center', fontFamily: 'Barlow Condensed', fontSize: '2.5rem', fontWeight: 900, color: 'var(--text-primary)', lineHeight: 1, marginBottom: '1rem' }}>
+                        {records.highest_attendance.publico.toLocaleString('pt-BR')}
                       </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Adversário</span>
-                        <span className="milestone-value">{records.highest_attendance.adversario}</span>
-                      </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Placar</span>
-                        <span className="milestone-value">{records.highest_attendance.placar}</span>
-                      </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Data / Campeonato</span>
-                        <span className="milestone-value">{records.highest_attendance.data} ({records.highest_attendance.campeonato})</span>
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                        <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{records.highest_attendance.adversario} ({records.highest_attendance.placar})</div>
+                        <div>{records.highest_attendance.data} · {records.highest_attendance.campeonato}</div>
                       </div>
                     </div>
 
-                    <div className="milestone-box">
-                      <div className="milestone-title">
+                    <div className="milestone-box" style={{ background: 'transparent', border: 'none', padding: 0 }}>
+                      <div className="milestone-title" style={{ justifyContent: 'center', borderBottom: 'none', paddingBottom: 0, marginBottom: '0.5rem' }}>
                         <DollarSign size={18} />
                         Maior Bilheteria
                       </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Renda Bruta</span>
-                        <span className="milestone-value" style={{ color: 'var(--accent-gold)' }}>
-                          {records.highest_revenue.renda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                        </span>
+                      <div style={{ textAlign: 'center', fontFamily: 'Barlow Condensed', fontSize: '2.5rem', fontWeight: 900, color: 'var(--ouro)', lineHeight: 1, marginBottom: '1rem' }}>
+                        {records.highest_revenue.renda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                       </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Adversário</span>
-                        <span className="milestone-value">{records.highest_revenue.adversario}</span>
-                      </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Placar</span>
-                        <span className="milestone-value">{records.highest_revenue.placar}</span>
-                      </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Data / Campeonato</span>
-                        <span className="milestone-value">{records.highest_revenue.data} ({records.highest_revenue.campeonato})</span>
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                        <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{records.highest_revenue.adversario} ({records.highest_revenue.placar})</div>
+                        <div>{records.highest_revenue.data} · {records.highest_revenue.campeonato}</div>
                       </div>
                     </div>
 
-                    <div className="milestone-box">
-                      <div className="milestone-title">
+                    <div className="milestone-box" style={{ background: 'transparent', border: 'none', padding: 0 }}>
+                      <div className="milestone-title" style={{ justifyContent: 'center', borderBottom: 'none', paddingBottom: 0, marginBottom: '0.5rem' }}>
                         <Trophy size={18} />
                         Maior Goleada
                       </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Resultado Final</span>
-                        <span className="milestone-value" style={{ color: 'var(--success)', fontWeight: 'bold' }}>
-                          Corinthians {records.biggest_win.placar}
-                        </span>
+                      <div style={{ textAlign: 'center', fontFamily: 'Barlow Condensed', fontSize: '2.5rem', fontWeight: 900, color: 'var(--vermelho)', lineHeight: 1, marginBottom: '1rem' }}>
+                        COR {records.biggest_win.placar}
                       </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Adversário</span>
-                        <span className="milestone-value">{records.biggest_win.adversario}</span>
-                      </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Data / Campeonato</span>
-                        <span className="milestone-value">{records.biggest_win.data} ({records.biggest_win.campeonato})</span>
-                      </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Saldo</span>
-                        <span className="milestone-value">+{records.biggest_win.saldo} gols de saldo</span>
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                        <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>contra {records.biggest_win.adversario} (+{records.biggest_win.saldo} gols)</div>
+                        <div>{records.biggest_win.data} · {records.biggest_win.campeonato}</div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="panel-card" style={{ marginBottom: 0 }}>
+                <div className="panel-card reveal" style={{ marginBottom: 0 }}>
                   <h2 className="panel-title">
                     <Sparkles className="panel-title-icon" size={24} />
                     Marcos Históricos (Milestones)
                   </h2>
                   <div className="milestones-grid" style={{ marginTop: '1rem' }}>
-                    <div className="milestone-box">
-                      <div className="milestone-title">
+                    <div className="milestone-box" style={{ background: 'transparent', border: 'none', padding: 0 }}>
+                      <div className="milestone-title" style={{ justifyContent: 'center', borderBottom: 'none', paddingBottom: 0, marginBottom: '0.5rem' }}>
                         <Calendar size={18} />
                         Partida Inaugural
                       </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Data</span>
-                        <span className="milestone-value">{milestones.first_game.data}</span>
+                      <div style={{ textAlign: 'center', fontFamily: 'Barlow Condensed', fontSize: '2.5rem', fontWeight: 900, color: 'var(--text-primary)', lineHeight: 1, marginBottom: '1rem' }}>
+                        {milestones.first_game.data.split('/')[2]}
                       </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Adversário</span>
-                        <span className="milestone-value">{milestones.first_game.adversario}</span>
-                      </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Placar</span>
-                        <span className="milestone-value" style={{ color: 'var(--danger)' }}>{milestones.first_game.placar}</span>
-                      </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Público Pagante</span>
-                        <span className="milestone-value">{milestones.first_game.publico.toLocaleString('pt-BR')}</span>
-                      </div>
-                      <div className="milestone-item">
-                        <span className="milestone-label">Técnico COR</span>
-                        <span className="milestone-value">{milestones.first_game.tecnico}</span>
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                        <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>COR {milestones.first_game.placar} {milestones.first_game.adversario}</div>
+                        <div>{milestones.first_game.data} · {milestones.first_game.publico.toLocaleString('pt-BR')} pagantes</div>
                       </div>
                     </div>
 
                     {milestones.first_cor_goal && milestones.first_cor_goal.jogador ? (
-                      <div className="milestone-box">
-                        <div className="milestone-title">
+                      <div className="milestone-box" style={{ background: 'transparent', border: 'none', padding: 0 }}>
+                        <div className="milestone-title" style={{ justifyContent: 'center', borderBottom: 'none', paddingBottom: 0, marginBottom: '0.5rem' }}>
                           <Goal size={18} />
-                          Primeiro Gol do Corinthians
+                          Primeiro Gol na Arena
                         </div>
-                        <div className="milestone-item">
-                          <span className="milestone-label">Autor do Gol</span>
-                          <span className="milestone-value" style={{ color: 'var(--success)', fontWeight: 'bold' }}>
-                            {milestones.first_cor_goal.jogador}
-                          </span>
+                        <div style={{ textAlign: 'center', fontFamily: 'Barlow Condensed', fontSize: '2.5rem', fontWeight: 900, color: 'var(--vermelho)', lineHeight: 1, marginBottom: '1rem', textTransform: 'uppercase' }}>
+                          {milestones.first_cor_goal.jogador}
                         </div>
-                        <div className="milestone-item">
-                          <span className="milestone-label">Adversário</span>
-                          <span className="milestone-value">{milestones.first_cor_goal.adversario}</span>
-                        </div>
-                        <div className="milestone-item">
-                          <span className="milestone-label">Data da Partida</span>
-                          <span className="milestone-value">{milestones.first_cor_goal.data}</span>
-                        </div>
-                        <div className="milestone-item">
-                          <span className="milestone-label">Minuto do Gol</span>
-                          <span className="milestone-value">{milestones.first_cor_goal.minuto}' (1T)</span>
-                        </div>
-                        <div className="milestone-item">
-                          <span className="milestone-label">Placar Final</span>
-                          <span className="milestone-value">{milestones.first_cor_goal.placar_final}</span>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                          <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>aos {milestones.first_cor_goal.minuto}' contra {milestones.first_cor_goal.adversario}</div>
+                          <div>{milestones.first_cor_goal.data} · Placar Final: {milestones.first_cor_goal.placar_final}</div>
                         </div>
                       </div>
                     ) : (
@@ -472,7 +496,7 @@ function App() {
                           Primeiro Gol do Corinthians
                         </div>
                         <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', textAlign: 'center', padding: '1rem' }}>
-                          <ShieldAlert size={24} style={{ display: 'block', margin: '0 auto 0.5rem', color: 'var(--warning)' }} />
+                          <ShieldAlert size={24} style={{ display: 'block', margin: '0 auto 0.5rem', color: 'var(--vermelho)' }} />
                           Dados de gol não encontrados
                         </div>
                       </div>

@@ -12,7 +12,7 @@ const TopPerformers = () => {
   const top5Scorers = performersData.players.top_scorers.slice(0, 5).reverse();
 
   return (
-    <div className="panel-card">
+    <div className="panel-card reveal">
       <h2 className="panel-title">
         <Trophy className="panel-title-icon" size={24} />
         Hall da Fama &amp; Recordes da Arena
@@ -124,7 +124,7 @@ const TopPerformers = () => {
                       <td className="table-highlight">{player.jogador}</td>
                       <td>{player.posicao}</td>
                       <td>{player.jogos}</td>
-                      <td style={{ textAlign: 'right', color: 'var(--accent-gold)', fontWeight: 'bold', fontSize: '1.05rem' }}>
+                      <td style={{ textAlign: 'right', color: 'var(--ouro)', fontWeight: 'bold', fontSize: '1.05rem' }}>
                         {player.assistencias}
                       </td>
                     </tr>
@@ -250,7 +250,7 @@ const TopPerformers = () => {
                       <td>{match.placar}</td>
                       <td>{match.campeonato}</td>
                       <td>{match.data}</td>
-                      <td style={{ textAlign: 'right', color: 'var(--accent-gold)', fontWeight: 'bold' }}>
+                      <td style={{ textAlign: 'right', color: 'var(--ouro)', fontWeight: 'bold' }}>
                         {match.publico.toLocaleString('pt-BR')}
                       </td>
                     </tr>
@@ -281,7 +281,7 @@ const TopPerformers = () => {
                       <td>{match.placar}</td>
                       <td>{match.campeonato}</td>
                       <td>{match.data}</td>
-                      <td style={{ textAlign: 'right', color: 'var(--accent-gold)', fontWeight: 'bold' }}>
+                      <td style={{ textAlign: 'right', color: 'var(--ouro)', fontWeight: 'bold' }}>
                         {match.renda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                       </td>
                     </tr>

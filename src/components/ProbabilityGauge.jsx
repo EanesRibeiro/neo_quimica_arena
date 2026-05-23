@@ -1,58 +1,105 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
-/**
- * Gauge Semicircular Responsivo baseado em SVG puro e CSS.
- * Cores baseadas nos critérios do Corinthians (sem verde!).
- */
-const ProbabilityGauge = ({ probability }) => {
-  const value = Math.min(Math.max(probability, 0), 100);
-  
-  // Raio e perímetro do semicírculo (SVG stroke-dasharray)
-  const radius = 50;
-  const strokeWidth = 10;
-  const circumference = Math.PI * radius; // ~157.08
-  const strokeDashoffset = circumference - (value / 100) * circumference;
+const COR_GAUGE = (prob) => {
+  if (prob >= 60) return '#C8232C'; // Vermelho Corinthians
+  if (prob >= 40) return '#888888'; // Cinza Empates
+  return '#2E2E2E';                 // Cinza Escuro Derrota
+};
 
-  // Lógica de cores baseada nos limites
-  let strokeColor = '#2E2E2E'; // Preto/cinza escuro para < 40%
-  if (value >= 60) {
-    strokeColor = '#C8232C'; // Vermelho Corinthians
-  } else if (value >= 40) {
-    strokeColor = '#E0E0E0'; // Cinza claro/branco para equilíbrio (40% - 59.9%)
-  }
+export function ProbabilityGauge({ probability, sampleSize }) {
+  const prevRef = useRef(0);
+  const frameRef = useRef(null);
+  const pathRef = useRef(null);
+  const textRef = useRef(null);
+
+  const RADIUS = 80;
+  const CIRCUMFERENCE = Math.PI * RADIUS;
+
+  useEffect(() => {
+    const start = prevRef.current;
+    const end = probability;
+    const duration = 800;
+    const startTime = performance.now();
+    const cor = COR_GAUGE(probability);
+
+    const animate = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // cubic easeOut
+      const current = start + (end - start) * eased;
+
+      const dashOffset = CIRCUMFERENCE * (1 - current / 100);
+
+      if (pathRef.current) {
+        pathRef.current.style.strokeDashoffset = dashOffset;
+        pathRef.current.setAttribute('stroke', cor);
+      }
+      if (textRef.current) {
+        textRef.current.textContent = Math.round(current) + '%';
+        textRef.current.setAttribute('fill', cor);
+      }
+
+      if (progress < 1) {
+        frameRef.current = requestAnimationFrame(animate);
+      } else {
+        prevRef.current = end;
+      }
+    };
+
+    cancelAnimationFrame(frameRef.current);
+    frameRef.current = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(frameRef.current);
+  }, [probability, CIRCUMFERENCE]);
 
   return (
-    <div className="gauge-wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 auto' }}>
-      <svg width="220" height="120" viewBox="0 0 120 70">
-        {/* Arco de fundo (Track) */}
-        <path
-          d="M 10 60 A 50 50 0 0 1 110 60"
-          fill="none"
-          stroke="#1F1F1F"
-          strokeWidth={strokeWidth}
-          strokeLinecap="round"
+    <div style={{ textAlign: 'center', margin: '1rem 0' }}>
+      <svg viewBox="0 0 200 110" width="240" height="130">
+        {/* Track de fundo */}
+        <path 
+          d="M 10 100 A 90 90 0 0 1 190 100" 
+          fill="none" 
+          stroke="#1E1E1E" 
+          strokeWidth="14" 
+          strokeLinecap="round" 
         />
-        {/* Arco de progresso */}
-        <path
-          d="M 10 60 A 50 50 0 0 1 110 60"
-          fill="none"
-          stroke={strokeColor}
-          strokeWidth={strokeWidth}
-          strokeLinecap="round"
-          strokeDasharray={circumference}
-          strokeDashoffset={strokeDashoffset}
-          style={{ transition: 'stroke-dashoffset 0.8s ease-in-out, stroke 0.5s ease' }}
+        {/* Arco de progresso ativo */}
+        <path 
+          ref={pathRef}
+          d="M 10 100 A 90 90 0 0 1 190 100" 
+          fill="none" 
+          stroke="#888888" 
+          strokeWidth="14" 
+          strokeLinecap="round" 
+          strokeDasharray={CIRCUMFERENCE}
+          strokeDashoffset={CIRCUMFERENCE}
         />
-        {/* Texto centralizado */}
-        <text x="60" y="55" textAnchor="middle" fill="var(--text-primary)" fontSize="16" fontWeight="bold">
-          {value.toFixed(1)}%
+        {/* Texto central */}
+        <text 
+          ref={textRef} 
+          x="100" 
+          y="88" 
+          textAnchor="middle" 
+          fontSize="32" 
+          fontWeight="900" 
+          fontFamily="'Barlow Condensed', sans-serif"
+          fill="#888888"
+        >
+          0%
         </text>
-        <text x="60" y="67" textAnchor="middle" fill="var(--text-secondary)" fontSize="7" fontWeight="bold">
-          VITÓRIA
+        <text 
+          x="100" 
+          y="108" 
+          textAnchor="middle" 
+          fontSize="10" 
+          fill="#595959" 
+          fontFamily="'Barlow', sans-serif"
+        >
+          {sampleSize >= 5 ? `Base: ${sampleSize} jogos` : 'Naive Bayes (Amostra Reduzida < 5)'}
         </text>
       </svg>
     </div>
   );
-};
+}
 
 export default ProbabilityGauge;

@@ -1,46 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-/**
- * Hook customizado para contagem progressiva numérica suave.
- * @param {number} endValue - O valor final da contagem.
- * @param {number} duration - Duração da animação em milissegundos.
- * @returns {number} O valor atual da contagem animada.
- */
-export function useCountUp(endValue, duration = 1000) {
-  const [count, setCount] = useState(0);
+export function useCountUp(target, duration = 1200, delay = 0) {
+  const [value, setValue] = useState(0);
+  const frameRef = useRef(null);
 
   useEffect(() => {
-    let start = 0;
-    const end = parseFloat(endValue);
-    if (isNaN(end)) return;
-    if (start === end) {
-      setCount(end);
-      return;
-    }
-
-    const totalMilliseconds = duration;
-    const frameRate = 1000 / 60; // ~60 FPS
-    const totalFrames = Math.max(Math.floor(totalMilliseconds / frameRate), 1);
-    
-    let frame = 0;
-    const timer = setInterval(() => {
-      frame++;
-      const progress = frame / totalFrames;
+    const timer = setTimeout(() => {
+      const startTime = performance.now();
       
-      // Easing out quad: progress * (2 - progress)
-      const easeProgress = progress * (2 - progress);
-      const currentValue = start + easeProgress * (end - start);
+      const tick = (now) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function: easeOutQuart
+        const eased = 1 - Math.pow(1 - progress, 4);
+        
+        setValue(Math.round(eased * target));
+        
+        if (progress < 1) {
+          frameRef.current = requestAnimationFrame(tick);
+        }
+      };
       
-      setCount(currentValue);
+      frameRef.current = requestAnimationFrame(tick);
+    }, delay);
 
-      if (frame >= totalFrames) {
-        setCount(end);
-        clearInterval(timer);
-      }
-    }, frameRate);
+    return () => {
+      clearTimeout(timer);
+      cancelAnimationFrame(frameRef.current);
+    };
+  }, [target, duration, delay]);
 
-    return () => clearInterval(timer);
-  }, [endValue, duration]);
-
-  return count;
+  return value;
 }
