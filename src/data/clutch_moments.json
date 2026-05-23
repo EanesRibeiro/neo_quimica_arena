@@ -1,0 +1,140 @@
+{
+  "goals_by_interval": {
+    "1-15": {
+      "scored": 70,
+      "conceded": 50
+    },
+    "16-30": {
+      "scored": 94,
+      "conceded": 38
+    },
+    "31-45": {
+      "scored": 93,
+      "conceded": 57
+    },
+    "45+": {
+      "scored": 24,
+      "conceded": 9
+    },
+    "46-60": {
+      "scored": 103,
+      "conceded": 49
+    },
+    "61-75": {
+      "scored": 100,
+      "conceded": 48
+    },
+    "76-90": {
+      "scored": 111,
+      "conceded": 46
+    },
+    "90+": {
+      "scored": 41,
+      "conceded": 12
+    }
+  },
+  "turnarounds": {
+    "wins_after_conceding_first": {
+      "count": 21,
+      "percentage_of_wins": 9.130434782608695,
+      "featured_games": [
+        {
+          "jogo": 313,
+          "adversario": "NEWELL'S OLD BOYS",
+          "campeonato": "SULAMERICANA",
+          "data": "01/08/23",
+          "placar": "2 x 1",
+          "publico": 40116,
+          "renda": 2070243.7
+        },
+        {
+          "jogo": 314,
+          "adversario": "CORITIBA",
+          "campeonato": "BRASILEIRO",
+          "data": "13/08/23",
+          "placar": "3 x 1",
+          "publico": 41889,
+          "renda": 2580090.5
+        },
+        {
+          "jogo": 345,
+          "adversario": "CRICIÚMA",
+          "campeonato": "BRASILEIRO",
+          "data": "16/07/24",
+          "placar": "2 x 1",
+          "publico": 42965,
+          "renda": 2694764.5
+        },
+        {
+          "jogo": 377,
+          "adversario": "SPORT",
+          "campeonato": "BRASILEIRO",
+          "data": "19/04/25",
+          "placar": "2 x 1",
+          "publico": 43996,
+          "renda": 3041600.7
+        },
+        {
+          "jogo": 379,
+          "adversario": "INTERNACIONAL",
+          "campeonato": "BRASILEIRO",
+          "data": "03/05/25",
+          "placar": "4 x 2",
+          "publico": 44569,
+          "renda": 3041403.0
+        }
+      ]
+    },
+    "losses_after_scoring_first": {
+      "count": 7,
+      "percentage_of_losses": 12.280701754385964,
+      "featured_games": [
+        {
+          "jogo": 237,
+          "adversario": "BRAGANTINO",
+          "campeonato": "BRASILEIRO",
+          "data": "16/06/21",
+          "placar": "1 x 2",
+          "publico": 0,
+          "renda": 0.0
+        },
+        {
+          "jogo": 241,
+          "adversario": "ATLÉTICO (MG)",
+          "campeonato": "BRASILEIRO",
+          "data": "17/07/21",
+          "placar": "1 x 2",
+          "publico": 0,
+          "renda": 0.0
+        },
+        {
+          "jogo": 256,
+          "adversario": "SANTOS",
+          "campeonato": "PAULISTA",
+          "data": "02/02/22",
+          "placar": "1 x 2",
+          "publico": 27883,
+          "renda": 1675894.0
+        },
+        {
+          "jogo": 350,
+          "adversario": "BRAGANTINO",
+          "campeonato": "SULAMERICANA",
+          "data": "20/08/24",
+          "placar": "1 x 2",
+          "publico": 42118,
+          "renda": 2515840.0
+        },
+        {
+          "jogo": 391,
+          "adversario": "FLAMENGO",
+          "campeonato": "BRASILEIRO",
+          "data": "28/09/25",
+          "placar": "1 x 2",
+          "publico": 40296,
+          "renda": 3003306.0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,708 @@
+{
+  "totals": {
+    "V": 230,
+    "E": 113,
+    "D": 57,
+    "total": 400
+  },
+  "byCompetition": {
+    "BRASILEIRO": {
+      "V": 119,
+      "E": 73,
+      "D": 30,
+      "total": 222
+    },
+    "COPA DO BRASIL": {
+      "V": 23,
+      "E": 6,
+      "D": 7,
+      "total": 36
+    },
+    "AMISTOSO": {
+      "V": 3,
+      "E": 2,
+      "D": 0,
+      "total": 5
+    },
+    "PAULISTA": {
+      "V": 57,
+      "E": 22,
+      "D": 10,
+      "total": 89
+    },
+    "LIBERTADORES": {
+      "V": 14,
+      "E": 4,
+      "D": 6,
+      "total": 24
+    },
+    "SULAMERICANA": {
+      "V": 14,
+      "E": 6,
+      "D": 4,
+      "total": 24
+    }
+  },
+  "byDayOfWeek": {
+    "DOM": {
+      "V": 63,
+      "E": 44,
+      "D": 17,
+      "total": 124
+    },
+    "QUI": {
+      "V": 26,
+      "E": 14,
+      "D": 3,
+      "total": 43
+    },
+    "QUA": {
+      "V": 70,
+      "E": 22,
+      "D": 17,
+      "total": 109
+    },
+    "SÁB": {
+      "V": 49,
+      "E": 25,
+      "D": 13,
+      "total": 87
+    },
+    "TER": {
+      "V": 15,
+      "E": 5,
+      "D": 4,
+      "total": 24
+    },
+    "SEG": {
+      "V": 6,
+      "E": 2,
+      "D": 1,
+      "total": 9
+    },
+    "SEX": {
+      "V": 1,
+      "E": 1,
+      "D": 2,
+      "total": 4
+    }
+  },
+  "byPeriod": {
+    "Manhã": {
+      "V": 9,
+      "E": 2,
+      "D": 2,
+      "total": 13
+    },
+    "Tarde": {
+      "V": 56,
+      "E": 37,
+      "D": 13,
+      "total": 106
+    },
+    "Noite": {
+      "V": 165,
+      "E": 74,
+      "D": 42,
+      "total": 281
+    }
+  },
+  "byAttendanceRange": {
+    "under25k": {
+      "V": 60,
+      "E": 32,
+      "D": 19,
+      "total": 111
+    },
+    "range25kTo35k": {
+      "V": 57,
+      "E": 28,
+      "D": 9,
+      "total": 94
+    },
+    "range35kTo45k": {
+      "V": 97,
+      "E": 45,
+      "D": 26,
+      "total": 168
+    },
+    "over45k": {
+      "V": 16,
+      "E": 8,
+      "D": 3,
+      "total": 27
+    }
+  },
+  "combinations": {
+    "AMISTOSO|DOM|Manhã|range25kTo35k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "AMISTOSO|DOM|Tarde|range25kTo35k": {
+      "V": 0,
+      "E": 1,
+      "D": 0,
+      "total": 1
+    },
+    "AMISTOSO|QUA|Noite|under25k": {
+      "V": 1,
+      "E": 1,
+      "D": 0,
+      "total": 2
+    },
+    "AMISTOSO|SÁB|Tarde|under25k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "BRASILEIRO|DOM|Manhã|range35kTo45k": {
+      "V": 3,
+      "E": 0,
+      "D": 1,
+      "total": 4
+    },
+    "BRASILEIRO|DOM|Manhã|under25k": {
+      "V": 0,
+      "E": 1,
+      "D": 0,
+      "total": 1
+    },
+    "BRASILEIRO|DOM|Noite|range25kTo35k": {
+      "V": 3,
+      "E": 2,
+      "D": 1,
+      "total": 6
+    },
+    "BRASILEIRO|DOM|Noite|range35kTo45k": {
+      "V": 2,
+      "E": 5,
+      "D": 1,
+      "total": 8
+    },
+    "BRASILEIRO|DOM|Noite|under25k": {
+      "V": 2,
+      "E": 3,
+      "D": 1,
+      "total": 6
+    },
+    "BRASILEIRO|DOM|Tarde|over45k": {
+      "V": 3,
+      "E": 1,
+      "D": 0,
+      "total": 4
+    },
+    "BRASILEIRO|DOM|Tarde|range25kTo35k": {
+      "V": 8,
+      "E": 6,
+      "D": 1,
+      "total": 15
+    },
+    "BRASILEIRO|DOM|Tarde|range35kTo45k": {
+      "V": 14,
+      "E": 11,
+      "D": 4,
+      "total": 29
+    },
+    "BRASILEIRO|DOM|Tarde|under25k": {
+      "V": 3,
+      "E": 3,
+      "D": 3,
+      "total": 9
+    },
+    "BRASILEIRO|QUA|Manhã|over45k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "BRASILEIRO|QUA|Noite|over45k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "BRASILEIRO|QUA|Noite|range25kTo35k": {
+      "V": 7,
+      "E": 3,
+      "D": 0,
+      "total": 10
+    },
+    "BRASILEIRO|QUA|Noite|range35kTo45k": {
+      "V": 2,
+      "E": 2,
+      "D": 2,
+      "total": 6
+    },
+    "BRASILEIRO|QUA|Noite|under25k": {
+      "V": 10,
+      "E": 6,
+      "D": 1,
+      "total": 17
+    },
+    "BRASILEIRO|QUA|Tarde|range25kTo35k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "BRASILEIRO|QUI|Manhã|range35kTo45k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "BRASILEIRO|QUI|Noite|over45k": {
+      "V": 1,
+      "E": 1,
+      "D": 0,
+      "total": 2
+    },
+    "BRASILEIRO|QUI|Noite|range25kTo35k": {
+      "V": 5,
+      "E": 2,
+      "D": 0,
+      "total": 7
+    },
+    "BRASILEIRO|QUI|Noite|range35kTo45k": {
+      "V": 3,
+      "E": 0,
+      "D": 0,
+      "total": 3
+    },
+    "BRASILEIRO|QUI|Noite|under25k": {
+      "V": 5,
+      "E": 1,
+      "D": 1,
+      "total": 7
+    },
+    "BRASILEIRO|SEG|Noite|over45k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "BRASILEIRO|SEG|Noite|range35kTo45k": {
+      "V": 2,
+      "E": 2,
+      "D": 0,
+      "total": 4
+    },
+    "BRASILEIRO|SEG|Noite|under25k": {
+      "V": 3,
+      "E": 0,
+      "D": 1,
+      "total": 4
+    },
+    "BRASILEIRO|SEX|Noite|range35kTo45k": {
+      "V": 1,
+      "E": 0,
+      "D": 2,
+      "total": 3
+    },
+    "BRASILEIRO|SÁB|Manhã|under25k": {
+      "V": 0,
+      "E": 1,
+      "D": 0,
+      "total": 1
+    },
+    "BRASILEIRO|SÁB|Noite|range25kTo35k": {
+      "V": 7,
+      "E": 5,
+      "D": 2,
+      "total": 14
+    },
+    "BRASILEIRO|SÁB|Noite|range35kTo45k": {
+      "V": 16,
+      "E": 7,
+      "D": 5,
+      "total": 28
+    },
+    "BRASILEIRO|SÁB|Noite|under25k": {
+      "V": 5,
+      "E": 6,
+      "D": 2,
+      "total": 13
+    },
+    "BRASILEIRO|SÁB|Tarde|over45k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "BRASILEIRO|SÁB|Tarde|range25kTo35k": {
+      "V": 1,
+      "E": 2,
+      "D": 0,
+      "total": 3
+    },
+    "BRASILEIRO|SÁB|Tarde|range35kTo45k": {
+      "V": 3,
+      "E": 2,
+      "D": 2,
+      "total": 7
+    },
+    "BRASILEIRO|SÁB|Tarde|under25k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "BRASILEIRO|TER|Noite|over45k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "BRASILEIRO|TER|Noite|range35kTo45k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "BRASILEIRO|TER|Noite|under25k": {
+      "V": 1,
+      "E": 1,
+      "D": 0,
+      "total": 2
+    },
+    "COPA DO BRASIL|DOM|Noite|over45k": {
+      "V": 0,
+      "E": 0,
+      "D": 1,
+      "total": 1
+    },
+    "COPA DO BRASIL|DOM|Tarde|over45k": {
+      "V": 0,
+      "E": 1,
+      "D": 0,
+      "total": 1
+    },
+    "COPA DO BRASIL|QUA|Noite|over45k": {
+      "V": 2,
+      "E": 2,
+      "D": 1,
+      "total": 5
+    },
+    "COPA DO BRASIL|QUA|Noite|range25kTo35k": {
+      "V": 3,
+      "E": 1,
+      "D": 2,
+      "total": 6
+    },
+    "COPA DO BRASIL|QUA|Noite|range35kTo45k": {
+      "V": 8,
+      "E": 1,
+      "D": 1,
+      "total": 10
+    },
+    "COPA DO BRASIL|QUA|Noite|under25k": {
+      "V": 6,
+      "E": 0,
+      "D": 2,
+      "total": 8
+    },
+    "COPA DO BRASIL|QUI|Noite|over45k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "COPA DO BRASIL|QUI|Noite|range25kTo35k": {
+      "V": 1,
+      "E": 1,
+      "D": 0,
+      "total": 2
+    },
+    "COPA DO BRASIL|SÁB|Tarde|range35kTo45k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "COPA DO BRASIL|TER|Noite|over45k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "LIBERTADORES|QUA|Noite|range25kTo35k": {
+      "V": 2,
+      "E": 0,
+      "D": 1,
+      "total": 3
+    },
+    "LIBERTADORES|QUA|Noite|range35kTo45k": {
+      "V": 10,
+      "E": 1,
+      "D": 2,
+      "total": 13
+    },
+    "LIBERTADORES|QUA|Noite|under25k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "LIBERTADORES|QUI|Noite|range35kTo45k": {
+      "V": 0,
+      "E": 2,
+      "D": 0,
+      "total": 2
+    },
+    "LIBERTADORES|QUI|Noite|under25k": {
+      "V": 0,
+      "E": 0,
+      "D": 1,
+      "total": 1
+    },
+    "LIBERTADORES|TER|Noite|over45k": {
+      "V": 0,
+      "E": 0,
+      "D": 1,
+      "total": 1
+    },
+    "LIBERTADORES|TER|Noite|range35kTo45k": {
+      "V": 1,
+      "E": 1,
+      "D": 0,
+      "total": 2
+    },
+    "LIBERTADORES|TER|Noite|under25k": {
+      "V": 0,
+      "E": 0,
+      "D": 1,
+      "total": 1
+    },
+    "PAULISTA|DOM|Manhã|range25kTo35k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "PAULISTA|DOM|Manhã|range35kTo45k": {
+      "V": 1,
+      "E": 0,
+      "D": 1,
+      "total": 2
+    },
+    "PAULISTA|DOM|Manhã|under25k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "PAULISTA|DOM|Noite|over45k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "PAULISTA|DOM|Noite|range35kTo45k": {
+      "V": 7,
+      "E": 1,
+      "D": 1,
+      "total": 9
+    },
+    "PAULISTA|DOM|Noite|under25k": {
+      "V": 1,
+      "E": 1,
+      "D": 0,
+      "total": 2
+    },
+    "PAULISTA|DOM|Tarde|over45k": {
+      "V": 1,
+      "E": 1,
+      "D": 0,
+      "total": 2
+    },
+    "PAULISTA|DOM|Tarde|range25kTo35k": {
+      "V": 5,
+      "E": 2,
+      "D": 1,
+      "total": 8
+    },
+    "PAULISTA|DOM|Tarde|range35kTo45k": {
+      "V": 3,
+      "E": 4,
+      "D": 0,
+      "total": 7
+    },
+    "PAULISTA|DOM|Tarde|under25k": {
+      "V": 3,
+      "E": 1,
+      "D": 1,
+      "total": 5
+    },
+    "PAULISTA|QUA|Noite|over45k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "PAULISTA|QUA|Noite|range25kTo35k": {
+      "V": 1,
+      "E": 1,
+      "D": 1,
+      "total": 3
+    },
+    "PAULISTA|QUA|Noite|range35kTo45k": {
+      "V": 3,
+      "E": 0,
+      "D": 0,
+      "total": 3
+    },
+    "PAULISTA|QUA|Noite|under25k": {
+      "V": 7,
+      "E": 3,
+      "D": 2,
+      "total": 12
+    },
+    "PAULISTA|QUI|Noite|over45k": {
+      "V": 0,
+      "E": 2,
+      "D": 0,
+      "total": 2
+    },
+    "PAULISTA|QUI|Noite|range25kTo35k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "PAULISTA|QUI|Noite|range35kTo45k": {
+      "V": 0,
+      "E": 1,
+      "D": 0,
+      "total": 1
+    },
+    "PAULISTA|QUI|Noite|under25k": {
+      "V": 4,
+      "E": 0,
+      "D": 0,
+      "total": 4
+    },
+    "PAULISTA|QUI|Tarde|under25k": {
+      "V": 0,
+      "E": 1,
+      "D": 0,
+      "total": 1
+    },
+    "PAULISTA|SEX|Noite|under25k": {
+      "V": 0,
+      "E": 1,
+      "D": 0,
+      "total": 1
+    },
+    "PAULISTA|SÁB|Noite|range25kTo35k": {
+      "V": 3,
+      "E": 0,
+      "D": 0,
+      "total": 3
+    },
+    "PAULISTA|SÁB|Noite|range35kTo45k": {
+      "V": 4,
+      "E": 1,
+      "D": 0,
+      "total": 5
+    },
+    "PAULISTA|SÁB|Noite|under25k": {
+      "V": 0,
+      "E": 0,
+      "D": 1,
+      "total": 1
+    },
+    "PAULISTA|SÁB|Tarde|range25kTo35k": {
+      "V": 2,
+      "E": 1,
+      "D": 0,
+      "total": 3
+    },
+    "PAULISTA|SÁB|Tarde|range35kTo45k": {
+      "V": 3,
+      "E": 0,
+      "D": 1,
+      "total": 4
+    },
+    "PAULISTA|SÁB|Tarde|under25k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "PAULISTA|TER|Noite|range25kTo35k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "PAULISTA|TER|Noite|range35kTo45k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "PAULISTA|TER|Noite|under25k": {
+      "V": 0,
+      "E": 1,
+      "D": 1,
+      "total": 2
+    },
+    "PAULISTA|TER|Tarde|under25k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "SULAMERICANA|QUA|Noite|range25kTo35k": {
+      "V": 1,
+      "E": 1,
+      "D": 0,
+      "total": 2
+    },
+    "SULAMERICANA|QUA|Noite|range35kTo45k": {
+      "V": 0,
+      "E": 0,
+      "D": 2,
+      "total": 2
+    },
+    "SULAMERICANA|QUA|Noite|under25k": {
+      "V": 2,
+      "E": 0,
+      "D": 0,
+      "total": 2
+    },
+    "SULAMERICANA|QUI|Noite|range25kTo35k": {
+      "V": 2,
+      "E": 0,
+      "D": 0,
+      "total": 2
+    },
+    "SULAMERICANA|QUI|Noite|range35kTo45k": {
+      "V": 1,
+      "E": 2,
+      "D": 0,
+      "total": 3
+    },
+    "SULAMERICANA|QUI|Noite|under25k": {
+      "V": 1,
+      "E": 1,
+      "D": 1,
+      "total": 3
+    },
+    "SULAMERICANA|TER|Noite|range25kTo35k": {
+      "V": 1,
+      "E": 0,
+      "D": 0,
+      "total": 1
+    },
+    "SULAMERICANA|TER|Noite|range35kTo45k": {
+      "V": 6,
+      "E": 2,
+      "D": 1,
+      "total": 9
+    }
+  }
+}

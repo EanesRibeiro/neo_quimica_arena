@@ -1,0 +1,60 @@
+{
+  "general": {
+    "total_games": 400,
+    "wins": 230,
+    "draws": 113,
+    "losses": 57,
+    "win_percentage": 66.91666666666667,
+    "goals_scored": 636,
+    "goals_conceded": 309,
+    "goal_difference": 327,
+    "unbeaten_streak_record": 34
+  },
+  "financial_and_attendance": {
+    "total_attendance": 11642575,
+    "average_attendance": 29106.4375,
+    "average_attendance_with_crowd": 33075.49715909091,
+    "total_revenue": 753292053.65,
+    "average_revenue": 1883230.1341249999,
+    "average_revenue_with_crowd": 2140034.243323864
+  },
+  "records": {
+    "highest_attendance": {
+      "publico": 48196,
+      "adversario": "PALMEIRAS",
+      "data": "27/03/25",
+      "placar": "0 x 0",
+      "campeonato": "PAULISTA"
+    },
+    "highest_revenue": {
+      "renda": 5469214.0,
+      "adversario": "VASCO DA GAMA",
+      "data": "17/12/25",
+      "placar": "0 x 0",
+      "campeonato": "COPA DO BRASIL"
+    },
+    "biggest_win": {
+      "placar": "6 x 0",
+      "adversario": "COBRESAL",
+      "data": "20/04/16",
+      "campeonato": "LIBERTADORES",
+      "saldo": 6
+    }
+  },
+  "milestones": {
+    "first_game": {
+      "adversario": "FIGUEIRENSE",
+      "data": "18/05/14",
+      "placar": "0 x 1",
+      "publico": 36123,
+      "tecnico": "MANO MENEZES"
+    },
+    "first_cor_goal": {
+      "jogador": "Jadson",
+      "adversario": "Botafogo",
+      "data": "01/06/2014",
+      "placar_final": "1 x 1",
+      "minuto": "25"
+    }
+  }
+}

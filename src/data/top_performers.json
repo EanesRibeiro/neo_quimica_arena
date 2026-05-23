@@ -1,0 +1,635 @@
+{
+  "players": {
+    "top_scorers": [
+      {
+        "jogador": "YURI ALBERTO",
+        "posicao": "ATA",
+        "jogos": 107,
+        "gols": 49
+      },
+      {
+        "jogador": "ROMERO",
+        "posicao": "ATA",
+        "jogos": 179,
+        "gols": 43
+      },
+      {
+        "jogador": "ROGER GUEDES",
+        "posicao": "ATA",
+        "jogos": 64,
+        "gols": 31
+      },
+      {
+        "jogador": "JÔ",
+        "posicao": "ATA",
+        "jogos": 84,
+        "gols": 30
+      },
+      {
+        "jogador": "JADSON",
+        "posicao": "MC",
+        "jogos": 112,
+        "gols": 24
+      },
+      {
+        "jogador": "RENATO AUGUSTO",
+        "posicao": "MC",
+        "jogos": 107,
+        "gols": 17
+      },
+      {
+        "jogador": "GUSTAVO SILVA",
+        "posicao": "ATA",
+        "jogos": 89,
+        "gols": 15
+      },
+      {
+        "jogador": "GUERRERO",
+        "posicao": "ATA",
+        "jogos": 25,
+        "gols": 15
+      },
+      {
+        "jogador": "RODRIGUINHO",
+        "posicao": "MC",
+        "jogos": 76,
+        "gols": 14
+      },
+      {
+        "jogador": "MAYCON",
+        "posicao": "VOL",
+        "jogos": 124,
+        "gols": 13
+      },
+      {
+        "jogador": "MEMPHIS DEPAY",
+        "posicao": "ATA",
+        "jogos": 41,
+        "gols": 13
+      },
+      {
+        "jogador": "VAGNER LOVE",
+        "posicao": "ATA",
+        "jogos": 61,
+        "gols": 13
+      },
+      {
+        "jogador": "FÁBIO SANTOS",
+        "posicao": "LE",
+        "jogos": 107,
+        "gols": 13
+      },
+      {
+        "jogador": "GIL",
+        "posicao": "ZAG",
+        "jogos": 174,
+        "gols": 13
+      },
+      {
+        "jogador": "BOSELLI",
+        "posicao": "ATA",
+        "jogos": 37,
+        "gols": 12
+      }
+    ],
+    "top_assists": [
+      {
+        "jogador": "FAGNER",
+        "posicao": "LD",
+        "jogos": 281,
+        "assistencias": 41
+      },
+      {
+        "jogador": "JADSON",
+        "posicao": "MC",
+        "jogos": 112,
+        "assistencias": 31
+      },
+      {
+        "jogador": "RENATO AUGUSTO",
+        "posicao": "MC",
+        "jogos": 107,
+        "assistencias": 31
+      },
+      {
+        "jogador": "ROMERO",
+        "posicao": "ATA",
+        "jogos": 179,
+        "assistencias": 19
+      },
+      {
+        "jogador": "YURI ALBERTO",
+        "posicao": "ATA",
+        "jogos": 107,
+        "assistencias": 14
+      },
+      {
+        "jogador": "RODRIGUINHO",
+        "posicao": "MC",
+        "jogos": 76,
+        "assistencias": 14
+      },
+      {
+        "jogador": "RODRIGO GARRO",
+        "posicao": "MEI",
+        "jogos": 53,
+        "assistencias": 12
+      },
+      {
+        "jogador": "GIULIANO",
+        "posicao": "MC",
+        "jogos": 70,
+        "assistencias": 11
+      },
+      {
+        "jogador": "CLAYSON",
+        "posicao": "ATA",
+        "jogos": 65,
+        "assistencias": 10
+      },
+      {
+        "jogador": "MAYCON",
+        "posicao": "VOL",
+        "jogos": 124,
+        "assistencias": 9
+      },
+      {
+        "jogador": "MEMPHIS DEPAY",
+        "posicao": "ATA",
+        "jogos": 41,
+        "assistencias": 9
+      },
+      {
+        "jogador": "ELIAS",
+        "posicao": "VOL",
+        "jogos": 46,
+        "assistencias": 9
+      },
+      {
+        "jogador": "LUCAS PITON",
+        "posicao": "LE",
+        "jogos": 56,
+        "assistencias": 8
+      },
+      {
+        "jogador": "PEDRINHO",
+        "posicao": "MC",
+        "jogos": 78,
+        "assistencias": 8
+      },
+      {
+        "jogador": "VAGNER LOVE",
+        "posicao": "ATA",
+        "jogos": 61,
+        "assistencias": 8
+      }
+    ],
+    "most_appearances": [
+      {
+        "jogador": "CÁSSIO",
+        "posicao": "GOL",
+        "jogos": 293,
+        "gols": 0,
+        "aproveitamento": 66.78043231
+      },
+      {
+        "jogador": "FAGNER",
+        "posicao": "LD",
+        "jogos": 281,
+        "gols": 9,
+        "aproveitamento": 66.90391459
+      },
+      {
+        "jogador": "ROMERO",
+        "posicao": "ATA",
+        "jogos": 179,
+        "gols": 43,
+        "aproveitamento": 67.7839851
+      },
+      {
+        "jogador": "GIL",
+        "posicao": "ZAG",
+        "jogos": 174,
+        "gols": 13,
+        "aproveitamento": 64.75095785
+      },
+      {
+        "jogador": "MAYCON",
+        "posicao": "VOL",
+        "jogos": 124,
+        "gols": 13,
+        "aproveitamento": 67.20430108
+      },
+      {
+        "jogador": "JADSON",
+        "posicao": "MC",
+        "jogos": 112,
+        "gols": 24,
+        "aproveitamento": 68.1547619
+      },
+      {
+        "jogador": "GABRIEL",
+        "posicao": "VOL",
+        "jogos": 110,
+        "gols": 3,
+        "aproveitamento": 61.21212121
+      },
+      {
+        "jogador": "MATEUS VITAL",
+        "posicao": "MC",
+        "jogos": 108,
+        "gols": 8,
+        "aproveitamento": 58.64197531
+      },
+      {
+        "jogador": "RENATO AUGUSTO",
+        "posicao": "MC",
+        "jogos": 107,
+        "gols": 17,
+        "aproveitamento": 74.45482866
+      },
+      {
+        "jogador": "FÁBIO SANTOS",
+        "posicao": "LE",
+        "jogos": 107,
+        "gols": 13,
+        "aproveitamento": 68.53582555
+      },
+      {
+        "jogador": "YURI ALBERTO",
+        "posicao": "ATA",
+        "jogos": 107,
+        "gols": 49,
+        "aproveitamento": 66.97819315
+      },
+      {
+        "jogador": "GUSTAVO SILVA",
+        "posicao": "ATA",
+        "jogos": 89,
+        "gols": 15,
+        "aproveitamento": 59.92509363
+      },
+      {
+        "jogador": "RALF",
+        "posicao": "VOL",
+        "jogos": 87,
+        "gols": 4,
+        "aproveitamento": 72.03065134
+      },
+      {
+        "jogador": "JÔ",
+        "posicao": "ATA",
+        "jogos": 84,
+        "gols": 30,
+        "aproveitamento": 65.47619048
+      },
+      {
+        "jogador": "PEDRINHO",
+        "posicao": "MC",
+        "jogos": 78,
+        "gols": 6,
+        "aproveitamento": 67.52136752
+      }
+    ],
+    "best_win_rates_min_30_games": [
+      {
+        "jogador": "MALCOM",
+        "posicao": "ATA",
+        "jogos": 33,
+        "aproveitamento": 83.83838384
+      },
+      {
+        "jogador": "LUCIANO",
+        "posicao": "ATA",
+        "jogos": 39,
+        "aproveitamento": 83.76068376
+      },
+      {
+        "jogador": "BRUNO HENRIQUE",
+        "posicao": "VOL",
+        "jogos": 53,
+        "aproveitamento": 81.76100629
+      },
+      {
+        "jogador": "FELIPE",
+        "posicao": "ZAG",
+        "jogos": 46,
+        "aproveitamento": 81.15942029
+      },
+      {
+        "jogador": "LUCCA",
+        "posicao": "ATA",
+        "jogos": 30,
+        "aproveitamento": 80.0
+      },
+      {
+        "jogador": "UENDEL",
+        "posicao": "LE",
+        "jogos": 45,
+        "aproveitamento": 80.0
+      },
+      {
+        "jogador": "GUILHERME ARANA",
+        "posicao": "LE",
+        "jogos": 46,
+        "aproveitamento": 77.53623188
+      },
+      {
+        "jogador": "ELIAS",
+        "posicao": "VOL",
+        "jogos": 46,
+        "aproveitamento": 77.53623188
+      },
+      {
+        "jogador": "GIOVANNI AUGUSTO",
+        "posicao": "MC",
+        "jogos": 34,
+        "aproveitamento": 77.45098039
+      },
+      {
+        "jogador": "DANILO",
+        "posicao": "MC",
+        "jogos": 63,
+        "aproveitamento": 76.71957672
+      },
+      {
+        "jogador": "ADSON",
+        "posicao": "MEI",
+        "jogos": 56,
+        "aproveitamento": 75.0
+      },
+      {
+        "jogador": "RENATO AUGUSTO",
+        "posicao": "MC",
+        "jogos": 107,
+        "aproveitamento": 74.45482866
+      },
+      {
+        "jogador": "DU QUEIROZ",
+        "posicao": "VOL",
+        "jogos": 47,
+        "aproveitamento": 73.75886525
+      },
+      {
+        "jogador": "IGOR CORONADO",
+        "posicao": "MEI",
+        "jogos": 36,
+        "aproveitamento": 73.14814815
+      },
+      {
+        "jogador": "ANDRÉ CARRILLO",
+        "posicao": "MEI",
+        "jogos": 39,
+        "aproveitamento": 72.64957265
+      }
+    ]
+  },
+  "matches": {
+    "highest_attendance": [
+      {
+        "jogo": 373,
+        "adversario": "PALMEIRAS",
+        "placar": "0 x 0",
+        "data": "27/03/25",
+        "campeonato": "PAULISTA",
+        "publico": 48196
+      },
+      {
+        "jogo": 367,
+        "adversario": "SANTOS",
+        "placar": "2 x 1",
+        "data": "12/02/25",
+        "campeonato": "PAULISTA",
+        "publico": 47695
+      },
+      {
+        "jogo": 371,
+        "adversario": "SANTOS",
+        "placar": "2 x 1",
+        "data": "09/03/25",
+        "campeonato": "PAULISTA",
+        "publico": 47472
+      },
+      {
+        "jogo": 399,
+        "adversario": "CRUZEIRO",
+        "placar": "1 x 2",
+        "data": "14/12/25",
+        "campeonato": "COPA DO BRASIL",
+        "publico": 46946
+      },
+      {
+        "jogo": 400,
+        "adversario": "VASCO DA GAMA",
+        "placar": "0 x 0",
+        "data": "17/12/25",
+        "campeonato": "COPA DO BRASIL",
+        "publico": 46616
+      },
+      {
+        "jogo": 381,
+        "adversario": "SANTOS",
+        "placar": "1 x 0",
+        "data": "18/05/25",
+        "campeonato": "BRASILEIRO",
+        "publico": 46535
+      },
+      {
+        "jogo": 311,
+        "adversario": "SÃO PAULO",
+        "placar": "2 x 1",
+        "data": "25/07/23",
+        "campeonato": "COPA DO BRASIL",
+        "publico": 46517
+      },
+      {
+        "jogo": 287,
+        "adversario": "FLAMENGO",
+        "placar": "0 x 0",
+        "data": "12/10/22",
+        "campeonato": "COPA DO BRASIL",
+        "publico": 46486
+      },
+      {
+        "jogo": 169,
+        "adversario": "SÃO PAULO",
+        "placar": "2 x 1",
+        "data": "21/04/19",
+        "campeonato": "PAULISTA",
+        "publico": 46481
+      },
+      {
+        "jogo": 357,
+        "adversario": "FLAMENGO",
+        "placar": "0 x 0",
+        "data": "20/10/24",
+        "campeonato": "COPA DO BRASIL",
+        "publico": 46426
+      }
+    ],
+    "highest_revenue": [
+      {
+        "jogo": 400,
+        "adversario": "VASCO DA GAMA",
+        "placar": "0 x 0",
+        "data": "17/12/25",
+        "campeonato": "COPA DO BRASIL",
+        "renda": 5469214.0
+      },
+      {
+        "jogo": 278,
+        "adversario": "FLAMENGO",
+        "placar": "0 x 2",
+        "data": "02/08/22",
+        "campeonato": "LIBERTADORES",
+        "renda": 5386291.5
+      },
+      {
+        "jogo": 152,
+        "adversario": "CRUZEIRO",
+        "placar": "1 x 2",
+        "data": "17/10/18",
+        "campeonato": "COPA DO BRASIL",
+        "renda": 5108151.0
+      },
+      {
+        "jogo": 169,
+        "adversario": "SÃO PAULO",
+        "placar": "2 x 1",
+        "data": "21/04/19",
+        "campeonato": "PAULISTA",
+        "renda": 5014884.0
+      },
+      {
+        "jogo": 287,
+        "adversario": "FLAMENGO",
+        "placar": "0 x 0",
+        "data": "12/10/22",
+        "campeonato": "COPA DO BRASIL",
+        "renda": 4665153.0
+      },
+      {
+        "jogo": 373,
+        "adversario": "PALMEIRAS",
+        "placar": "0 x 0",
+        "data": "27/03/25",
+        "campeonato": "PAULISTA",
+        "renda": 4638125.5
+      },
+      {
+        "jogo": 264,
+        "adversario": "BOCA JUNIORS",
+        "placar": "2 x 0",
+        "data": "26/04/22",
+        "campeonato": "LIBERTADORES",
+        "renda": 4611628.25
+      },
+      {
+        "jogo": 399,
+        "adversario": "CRUZEIRO",
+        "placar": "1 x 2",
+        "data": "14/12/25",
+        "campeonato": "COPA DO BRASIL",
+        "renda": 4464311.0
+      },
+      {
+        "jogo": 274,
+        "adversario": "BOCA JUNIORS",
+        "placar": "0 x 0",
+        "data": "28/06/22",
+        "campeonato": "LIBERTADORES",
+        "renda": 4276661.57
+      },
+      {
+        "jogo": 267,
+        "adversario": "SÃO PAULO",
+        "placar": "1 x 1",
+        "data": "22/05/22",
+        "campeonato": "BRASILEIRO",
+        "renda": 3688132.5
+      }
+    ],
+    "biggest_wins": [
+      {
+        "jogo": 65,
+        "adversario": "COBRESAL",
+        "placar": "6 x 0",
+        "data": "20/04/16",
+        "campeonato": "LIBERTADORES",
+        "saldo": 6
+      },
+      {
+        "jogo": 52,
+        "adversario": "SÃO PAULO",
+        "placar": "6 x 1",
+        "data": "22/11/15",
+        "campeonato": "BRASILEIRO",
+        "saldo": 5
+      },
+      {
+        "jogo": 218,
+        "adversario": "FLUMINENSE",
+        "placar": "5 x 0",
+        "data": "13/01/21",
+        "campeonato": "BRASILEIRO",
+        "saldo": 5
+      },
+      {
+        "jogo": 233,
+        "adversario": "SPORT HUNCAYO",
+        "placar": "5 x 0",
+        "data": "20/05/21",
+        "campeonato": "SULAMERICANA",
+        "saldo": 5
+      },
+      {
+        "jogo": 260,
+        "adversario": "PONTE PRETA",
+        "placar": "5 x 0",
+        "data": "12/03/22",
+        "campeonato": "PAULISTA",
+        "saldo": 5
+      },
+      {
+        "jogo": 21,
+        "adversario": "ONCE CALDAS",
+        "placar": "4 x 0",
+        "data": "04/02/15",
+        "campeonato": "LIBERTADORES",
+        "saldo": 4
+      },
+      {
+        "jogo": 29,
+        "adversario": "DANUBIO",
+        "placar": "4 x 0",
+        "data": "01/04/15",
+        "campeonato": "LIBERTADORES",
+        "saldo": 4
+      },
+      {
+        "jogo": 60,
+        "adversario": "LINENSE",
+        "placar": "4 x 0",
+        "data": "19/03/16",
+        "campeonato": "PAULISTA",
+        "saldo": 4
+      },
+      {
+        "jogo": 64,
+        "adversario": "RED BULL",
+        "placar": "4 x 0",
+        "data": "16/04/16",
+        "campeonato": "PAULISTA",
+        "saldo": 4
+      },
+      {
+        "jogo": 74,
+        "adversario": "FLAMENGO",
+        "placar": "4 x 0",
+        "data": "03/07/16",
+        "campeonato": "BRASILEIRO",
+        "saldo": 4
+      }
+    ]
+  }
+}
