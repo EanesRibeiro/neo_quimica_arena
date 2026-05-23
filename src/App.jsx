@@ -126,7 +126,7 @@ function App() {
   }, [selectedOpponent, selectedYear]);
 
   // Inicializa a observação automática de Scroll Reveal para elementos com a classe '.reveal'
-  useScrollReveal();
+  useScrollReveal('.reveal', [activeTab, selectedOpponent, selectedYear]);
 
   return (
     <div className="app-container">
