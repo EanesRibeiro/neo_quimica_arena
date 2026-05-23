@@ -625,16 +625,27 @@ body {
 
 .table td {
   padding: 1rem;
-  border-bottom: 1px solid var(--bg-tertiary);
+  border-bottom: none;
   font-size: 0.95rem;
 }
 
 .table tr {
-  transition: var(--transition);
+  transition: background-color 0.2s ease;
+  border-radius: var(--border-radius);
 }
 
 .table tr:hover td {
-  background-color: rgba(200, 35, 44, 0.08) !important;
+  background-color: var(--md-sys-color-surface-container-high) !important;
+}
+
+.table td:first-child {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.table td:last-child {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
 }
 
 .table-rank {

@@ -8,8 +8,9 @@ const TopPerformers = () => {
   const [playerSubTab, setPlayerSubTab] = useState('goals'); // 'goals', 'assists', 'appearances', 'win_rate'
   const [matchSubTab, setMatchSubTab] = useState('attendance'); // 'attendance', 'revenue', 'wins'
 
-  // Top 5 artilheiros ordenados para o gráfico horizontal (reverso para colocar o #1 no topo)
-  const top5Scorers = performersData.players.top_scorers.slice(0, 5).reverse();
+  // Calcular o máximo de gols e assistências para a barra de progresso
+  const maxGoals = Math.max(...performersData.players.top_scorers.map(p => p.gols), 1);
+  const maxAssists = Math.max(...performersData.players.top_assists.map(p => p.assistencias), 1);
 
   return (
     <div className="panel-card reveal">
@@ -75,33 +76,39 @@ const TopPerformers = () => {
           </div>
 
           {playerSubTab === 'goals' && (
-            <div style={{ padding: '1rem 0' }}>
-              <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
-                Top 5 Artilheiros Históricos na Neo Química Arena (Gráfico de Barras Horizontal)
-              </p>
-              <div style={{ width: '100%', height: 300 }}>
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    data={top5Scorers}
-                    layout="vertical"
-                    margin={{ top: 10, right: 30, left: 60, bottom: 5 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" stroke="#1F1F1F" />
-                    <XAxis type="number" stroke="var(--text-secondary)" fontSize={11} />
-                    <YAxis dataKey="jogador" type="category" stroke="var(--text-secondary)" fontSize={11} />
-                    <Tooltip
-                      contentStyle={{ backgroundColor: 'var(--bg-secondary)', borderColor: 'var(--bg-tertiary)', borderRadius: '8px' }}
-                      itemStyle={{ color: 'var(--text-primary)' }}
-                    />
-                    <Bar dataKey="gols" name="Gols na Arena" radius={[0, 4, 4, 0]}>
-                      {top5Scorers.map((entry, index) => {
-                        const isTop = index === top5Scorers.length - 1;
-                        return <Cell key={`cell-scorer-${index}`} fill={isTop ? '#C8232C' : '#888888'} />;
-                      })}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
+            <div className="table-responsive">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Posição</th>
+                    <th>Jogador</th>
+                    <th>Posição Campo</th>
+                    <th>Jogos Disputados</th>
+                    <th style={{ textAlign: 'right' }}>Gols na Arena</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {performersData.players.top_scorers.map((player, index) => {
+                    const progress = (player.gols / maxGoals) * 100;
+                    return (
+                      <tr key={player.jogador}>
+                        <td className="table-rank">#{index + 1}</td>
+                        <td style={{ position: 'relative', paddingBottom: '1.25rem' }}>
+                          <span className="table-highlight">{player.jogador}</span>
+                          <div style={{ position: 'absolute', bottom: '0.5rem', left: '1rem', right: '1rem', height: '4px', background: 'var(--md-sys-color-surface-container-highest)', borderRadius: '2px', overflow: 'hidden' }}>
+                            <div style={{ width: `${progress}%`, height: '100%', background: 'var(--md-sys-color-primary)' }}></div>
+                          </div>
+                        </td>
+                        <td>{player.posicao}</td>
+                        <td>{player.jogos}</td>
+                        <td style={{ textAlign: 'right', color: 'var(--md-sys-color-primary)', fontWeight: 'bold', fontSize: '1.05rem' }}>
+                          {player.gols}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           )}
 
@@ -118,17 +125,25 @@ const TopPerformers = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {performersData.players.top_assists.map((player, index) => (
-                    <tr key={player.jogador}>
-                      <td className="table-rank">#{index + 1}</td>
-                      <td className="table-highlight">{player.jogador}</td>
-                      <td>{player.posicao}</td>
-                      <td>{player.jogos}</td>
-                      <td style={{ textAlign: 'right', color: 'var(--ouro)', fontWeight: 'bold', fontSize: '1.05rem' }}>
-                        {player.assistencias}
-                      </td>
-                    </tr>
-                  ))}
+                  {performersData.players.top_assists.map((player, index) => {
+                    const progress = (player.assistencias / maxAssists) * 100;
+                    return (
+                      <tr key={player.jogador}>
+                        <td className="table-rank">#{index + 1}</td>
+                        <td style={{ position: 'relative', paddingBottom: '1.25rem' }}>
+                          <span className="table-highlight">{player.jogador}</span>
+                          <div style={{ position: 'absolute', bottom: '0.5rem', left: '1rem', right: '1rem', height: '4px', background: 'var(--md-sys-color-surface-container-highest)', borderRadius: '2px', overflow: 'hidden' }}>
+                            <div style={{ width: `${progress}%`, height: '100%', background: 'var(--md-sys-color-secondary-container)' }}></div>
+                          </div>
+                        </td>
+                        <td>{player.posicao}</td>
+                        <td>{player.jogos}</td>
+                        <td style={{ textAlign: 'right', color: 'var(--ouro)', fontWeight: 'bold', fontSize: '1.05rem' }}>
+                          {player.assistencias}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
